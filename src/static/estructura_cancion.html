@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructura de Canción - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/estructura-cancion"><i class="bi bi-music-player"></i> Estructura Canción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-warning text-dark">
+                        <h3><i class="bi bi-music-player"></i> Estructura completa para crear una canción mágica, memorable y emocionalmente poderosa</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row">
+                                    <!-- Categoría 1 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">✨ 1. Dinamismo emocional y magia narrativa</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[emotional build-up]" id="check1_1">
+                                                    <label class="form-check-label" for="check1_1">
+                                                        [emotional build-up]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[dynamic vocal delivery]" id="check1_2">
+                                                    <label class="form-check-label" for="check1_2">
+                                                        [dynamic vocal delivery]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[contrast between verses and chorus]" id="check1_3">
+                                                    <label class="form-check-label" for="check1_3">
+                                                        [contrast between verses and chorus]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[swells and fades in instrumentation]" id="check1_4">
+                                                    <label class="form-check-label" for="check1_4">
+                                                        [swells and fades in instrumentation]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[layered arrangement with emotional peaks]" id="check1_5">
+                                                    <label class="form-check-label" for="check1_5">
+                                                        [layered arrangement with emotional peaks]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-outline-primary seleccionar-todos" data-grupo="1">Seleccionar todos</button>
+                                                <button class="btn btn-sm btn-outline-secondary deseleccionar-todos" data-grupo="1">Deseleccionar todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoría 2 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">🎯 2. Repetición melódica para impacto y recuerdo</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[hook repetition]" id="check2_1">
+                                                    <label class="form-check-label" for="check2_1">
+                                                        [hook repetition]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[circular melodic phrasing]" id="check2_2">
+                                                    <label class="form-check-label" for="check2_2">
+                                                        [circular melodic phrasing]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[repeated lyrical motifs]" id="check2_3">
+                                                    <label class="form-check-label" for="check2_3">
+                                                        [repeated lyrical motifs]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[chorus with high memorability]" id="check2_4">
+                                                    <label class="form-check-label" for="check2_4">
+                                                        [chorus with high memorability]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[anthemic structure with recurring theme]" id="check2_5">
+                                                    <label class="form-check-label" for="check2_5">
+                                                        [anthemic structure with recurring theme]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-outline-primary seleccionar-todos" data-grupo="2">Seleccionar todos</button>
+                                                <button class="btn btn-sm btn-outline-secondary deseleccionar-todos" data-grupo="2">Deseleccionar todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoría 3 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">🥁 3. Repetición rítmica que engancha al cuerpo</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[repeated rhythmic motif]" id="check3_1">
+                                                    <label class="form-check-label" for="check3_1">
+                                                        [repeated rhythmic motif]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[groove-based repetition]" id="check3_2">
+                                                    <label class="form-check-label" for="check3_2">
+                                                        [groove-based repetition]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[percussive vocal phrasing]" id="check3_3">
+                                                    <label class="form-check-label" for="check3_3">
+                                                        [percussive vocal phrasing]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[rhythmic hooks]" id="check3_4">
+                                                    <label class="form-check-label" for="check3_4">
+                                                        [rhythmic hooks]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[looped instrumental rhythm]" id="check3_5">
+                                                    <label class="form-check-label" for="check3_5">
+                                                        [looped instrumental rhythm]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-outline-primary seleccionar-todos" data-grupo="3">Seleccionar todos</button>
+                                                <button class="btn btn-sm btn-outline-secondary deseleccionar-todos" data-grupo="3">Deseleccionar todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoría 4 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">🎵 4. Melodía lógica y emocional</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[emotional melodic arcs]" id="check4_1">
+                                                    <label class="form-check-label" for="check4_1">
+                                                        [emotional melodic arcs]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[controlled vocal leaps]" id="check4_2">
+                                                    <label class="form-check-label" for="check4_2">
+                                                        [controlled vocal leaps]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[melodic contour with purpose]" id="check4_3">
+                                                    <label class="form-check-label" for="check4_3">
+                                                        [melodic contour with purpose]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[natural pitch movement]" id="check4_4">
+                                                    <label class="form-check-label" for="check4_4">
+                                                        [natural pitch movement]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-outline-primary seleccionar-todos" data-grupo="4">Seleccionar todos</button>
+                                                <button class="btn btn-sm btn-outline-secondary deseleccionar-todos" data-grupo="4">Deseleccionar todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Categoría 5 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">🧠 5. Elementos que activan el sistema de recompensa del cerebro</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[gradual tension and release]" id="check5_1">
+                                                    <label class="form-check-label" for="check5_1">
+                                                        [gradual tension and release]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[familiar but fresh harmonic progressions]" id="check5_2">
+                                                    <label class="form-check-label" for="check5_2">
+                                                        [familiar but fresh harmonic progressions]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[cathartic chorus payoff]" id="check5_3">
+                                                    <label class="form-check-label" for="check5_3">
+                                                        [cathartic chorus payoff]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[sentimental lyrical phrasing]" id="check5_4">
+                                                    <label class="form-check-label" for="check5_4">
+                                                        [sentimental lyrical phrasing]
+                                                    </label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <input class="form-check-input elemento-cancion" type="checkbox" value="[rhythmically satisfying structure]" id="check5_5">
+                                                    <label class="form-check-label" for="check5_5">
+                                                        [rhythmically satisfying structure]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button class="btn btn-sm btn-outline-primary seleccionar-todos" data-grupo="5">Seleccionar todos</button>
+                                                <button class="btn btn-sm btn-outline-secondary deseleccionar-todos" data-grupo="5">Deseleccionar todos</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Elementos personalizados -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-dark text-white">
+                                                <h5 class="mb-0">➕ Elementos personalizados</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <label for="elementoPersonalizado" class="form-label">Añadir elemento personalizado:</label>
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" id="elementoPersonalizado" placeholder="Escribe tu elemento...">
+                                                        <button class="btn btn-primary" id="btnAgregarElemento">Añadir</button>
+                                                    </div>
+                                                    <small class="form-text text-muted">El elemento se añadirá automáticamente entre corchetes.</small>
+                                                </div>
+                                                <div id="elementosPersonalizados">
+                                                    <!-- Aquí se añadirán los elementos personalizados -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card sticky-top" style="top: 20px;">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">Elementos seleccionados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h6>Elementos para Suno:</h6>
+                                                <div>
+                                                    <button class="btn btn-sm btn-outline-primary" id="btnSeleccionarTodos">Seleccionar todos</button>
+                                                    <button class="btn btn-sm btn-outline-secondary" id="btnDeseleccionarTodos">Deseleccionar todos</button>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-light">
+                                                <pre id="listaElementos" class="mb-0" style="white-space: pre-wrap; max-height: 300px; overflow-y: auto;">Selecciona elementos para verlos aquí</pre>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary" id="btnCopiar">
+                                                <i class="bi bi-clipboard"></i> Copiar al portapapeles
+                                            </button>
+                                            <button class="btn btn-outline-success" id="btnGuardar">
+                                                <i class="bi bi-save"></i> Guardar como plantilla
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card mt-4">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0">Plantillas guardadas</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="list-group" id="plantillasGuardadas">
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Plantilla Pop Moderno</h6>
+                                                    <small>8 elementos</small>
+                                                </div>
+                                                <small class="text-muted">Creada el 20/05/2025</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Balada Emocional</h6>
+                                                    <small>12 elementos</small>
+                                                </div>
+                                                <small class="text-muted">Creada el 19/05/2025</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para guardar plantilla -->
+    <div class="modal fade" id="guardarPlantillaModal" tabindex="-1" aria-labelledby="guardarPlantillaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="guardarPlantillaModalLabel">Guardar como plantilla</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formGuardarPlantilla">
+                        <div class="mb-3">
+                            <label for="nombrePlantilla" class="form-label">Nombre de la plantilla</label>
+                            <input type="text" class="form-control" id="nombrePlantilla" placeholder="Ej: Pop Moderno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionPlantilla" class="form-label">Descripción (opcional)</label>
+                            <textarea class="form-control" id="descripcionPlantilla" rows="3" placeholder="Describe para qué sirve esta plantilla"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnConfirmarGuardar">Guardar plantilla</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const checkboxes = document.querySelectorAll('.elemento-cancion');
+            const listaElementos = document.getElementById('listaElementos');
+            const btnCopiar = document.getElementById('btnCopiar');
+            const btnGuardar = document.getElementById('btnGuardar');
+            const btnSeleccionarTodos = document.getElementById('btnSeleccionarTodos');
+            const btnDeseleccionarTodos = document.getElementById('btnDeseleccionarTodos');
+            const botonesSeleccionarGrupo = document.querySelectorAll('.seleccionar-todos');
+            const botonesDeseleccionarGrupo = document.querySelectorAll('.deseleccionar-todos');
+            const btnAgregarElemento = document.getElementById('btnAgregarElemento');
+            const elementoPersonalizado = document.getElementById('elementoPersonalizado');
+            const elementosPersonalizados = document.getElementById('elementosPersonalizados');
+            const btnConfirmarGuardar = document.getElementById('btnConfirmarGuardar');
+            
+            // Contador para IDs únicos de elementos personalizados
+            let contadorElementos = 0;
+            
+            // Función para actualizar la lista de elementos seleccionados
+            function actualizarLista() {
+                const elementosSeleccionados = Array.from(document.querySelectorAll('.elemento-cancion:checked')).map(el => el.value);
+                
+                if (elementosSeleccionados.length === 0) {
+                    listaElementos.textContent = 'Selecciona elementos para verlos aquí';
+                } else {
+                    listaElementos.textContent = elementosSeleccionados.join('\n');
+                }
+            }
+            
+            // Event listeners para checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', actualizarLista);
+            });
+            
+            // Botón para copiar al portapapeles
+            btnCopiar.addEventListener('click', function() {
+                const texto = listaElementos.textContent;
+                
+                if (texto === 'Selecciona elementos para verlos aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay elementos seleccionados para copiar.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                navigator.clipboard.writeText(texto).then(() => {
+                    // Mostrar mensaje de éxito
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-success text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Elementos copiados al portapapeles correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                });
+            });
+            
+            // Botón para guardar como plantilla
+            btnGuardar.addEventListener('click', function() {
+                const texto = listaElementos.textContent;
+                
+                if (texto === 'Selecciona elementos para verlos aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay elementos seleccionados para guardar como plantilla.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                // Mostrar modal para guardar plantilla
+                const modal = new bootstrap.Modal(document.getElementById('guardarPlantillaModal'));
+                modal.show();
+            });
+            
+            // Confirmar guardar plantilla
+            btnConfirmarGuardar.addEventListener('click', function() {
+                const nombrePlantilla = document.getElementById('nombrePlantilla').value;
+                
+                if (!nombrePlantilla) {
+                    alert('Por favor, introduce un nombre para la plantilla.');
+                    return;
+                }
+                
+                // Obtener elementos seleccionados
+                const elementosSeleccionados = Array.from(document.querySelectorAll('.elemento-cancion:checked')).map(el => el.value);
+                
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('guardarPlantillaModal'));
+                modal.hide();
+                
+                // Añadir a la lista de plantillas guardadas
+                const fechaActual = new Date().toLocaleDateString();
+                const plantillasGuardadas = document.getElementById('plantillasGuardadas');
+                
+                const nuevaPlantilla = document.createElement('a');
+                nuevaPlantilla.href = '#';
+                nuevaPlantilla.className = 'list-group-item list-group-item-action';
+                nuevaPlantilla.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">${nombrePlantilla}</h6>
+                        <small>${elementosSeleccionados.length} elementos</small>
+                    </div>
+                    <small class="text-muted">Creada el ${fechaActual}</small>
+                `;
+                
+                plantillasGuardadas.prepend(nuevaPlantilla);
+                
+                // Mostrar mensaje de éxito
+                const toast = document.createElement('div');
+                toast.className = 'position-fixed bottom-0 end-0 p-3';
+                toast.style.zIndex = '11';
+                
+                toast.innerHTML = `
+                    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-success text-white">
+                            <strong class="me-auto">Estudio Musical Virtual</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Plantilla "${nombrePlantilla}" guardada correctamente.
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Eliminar después de 3 segundos
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 3000);
+                
+                // Limpiar formulario
+                document.getElementById('formGuardarPlantilla').reset();
+            });
+            
+            // Botones para seleccionar/deseleccionar todos
+            btnSeleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                actualizarLista();
+            });
+            
+            btnDeseleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                actualizarLista();
+            });
+            
+            // Botones para seleccionar/deseleccionar por grupo
+            botonesSeleccionarGrupo.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const grupo = this.dataset.grupo;
+                    document.querySelectorAll(`[id^="check${grupo}_"]`).forEach(checkbox => {
+                        checkbox.checked = true;
+                    });
+                    actualizarLista();
+                });
+            });
+            
+            botonesDeseleccionarGrupo.forEach(boton => {
+                boton.addEventListener('click', function() {
+                    const grupo = this.dataset.grupo;
+                    document.querySelectorAll(`[id^="check${grupo}_"]`).forEach(checkbox => {
+                        checkbox.checked = false;
+                    });
+                    actualizarLista();
+                });
+            });
+            
+            // Añadir elemento personalizado
+            btnAgregarElemento.addEventListener('click', function() {
+                const texto = elementoPersonalizado.value.trim();
+                
+                if (!texto) {
+                    return;
+                }
+                
+                // Crear elemento con corchetes si no los tiene
+                let valorElemento = texto;
+                if (!valorElemento.startsWith('[')) {
+                    valorElemento = `[${valorElemento}]`;
+                }
+                if (!valorElemento.endsWith(']')) {
+                    valorElemento = `${valorElemento}]`;
+                }
+                
+                // Crear nuevo elemento
+                contadorElementos++;
+                const id = `checkPersonalizado_${contadorElementos}`;
+                
+                const nuevoElemento = document.createElement('div');
+                nuevoElemento.className = 'form-check d-flex justify-content-between align-items-center mb-2';
+                nuevoElemento.innerHTML = `
+                    <div>
+                        <input class="form-check-input elemento-cancion" type="checkbox" value="${valorElemento}" id="${id}" checked>
+                        <label class="form-check-label" for="${id}">
+                            ${valorElemento}
+                        </label>
+                    </div>
+                    <button class="btn btn-sm btn-outline-danger btn-eliminar-elemento">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                `;
+                
+                elementosPersonalizados.appendChild(nuevoElemento);
+                
+                // Añadir event listener al nuevo checkbox
+                document.getElementById(id).addEventListener('change', actualizarLista);
+                
+                // Añadir event listener al botón de eliminar
+                nuevoElemento.querySelector('.btn-eliminar-elemento').addEventListener('click', function() {
+                    elementosPersonalizados.removeChild(nuevoElemento);
+                    actualizarLista();
+                });
+                
+                // Limpiar input
+                elementoPersonalizado.value = '';
+                
+                // Actualizar lista
+                actualizarLista();
+            });
+            
+            // Permitir añadir elemento personalizado con Enter
+            elementoPersonalizado.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    btnAgregarElemento.click();
+                }
+            });
+            
+            // Cargar plantilla al hacer clic en ella
+            document.getElementById('plantillasGuardadas').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (e.target.closest('.list-group-item')) {
+                    // Mostrar mensaje
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-info text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Plantilla cargada correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

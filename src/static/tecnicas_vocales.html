@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnicas Vocales - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructura-cancion"><i class="bi bi-music-player"></i> Estructura Canción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3><i class="bi bi-mic"></i> Biblioteca de Técnicas Vocales</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h4>Técnicas Vocales</h4>
+                                            <p class="text-muted">Selecciona las técnicas vocales que deseas utilizar en tu producción</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="input-group me-2" style="width: 300px;">
+                                                <input type="text" class="form-control" id="searchInput" placeholder="Buscar técnicas...">
+                                                <button class="btn btn-outline-secondary" type="button" id="btnSearch">
+                                                    <i class="bi bi-search"></i>
+                                                </button>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bi bi-filter"></i> Filtrar
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownFilter">
+                                                    <li><a class="dropdown-item" href="#" data-filter="all">Todas las técnicas</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="belting">Belting</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="vibrato">Vibrato</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="falsetto">Falsete</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="growl">Growl</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="riff">Riffs y Runs</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="whisper">Susurro</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="vocal-fry">Vocal Fry</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="yodel">Yodel</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th style="width: 5%">Seleccionar</th>
+                                                    <th style="width: 20%">Técnica</th>
+                                                    <th style="width: 15%">Categoría</th>
+                                                    <th style="width: 45%">Descripción</th>
+                                                    <th style="width: 15%">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Belting -->
+                                                <tr data-category="belting">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[belting]" id="check_belting_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Belting</td>
+                                                    <td><span class="badge bg-danger">Belting</span></td>
+                                                    <td>Técnica potente que combina voz de pecho y cabeza para proyectar con fuerza. Común en Broadway y pop contemporáneo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="belting">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[mixed voice belting]" id="check_belting_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Mixed Voice Belting</td>
+                                                    <td><span class="badge bg-danger">Belting</span></td>
+                                                    <td>Variación más suave del belting que equilibra la voz de pecho y cabeza. Menos agresiva pero igualmente potente.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Vibrato -->
+                                                <tr data-category="vibrato">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[natural vibrato]" id="check_vibrato_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Natural Vibrato</td>
+                                                    <td><span class="badge bg-primary">Vibrato</span></td>
+                                                    <td>Oscilación natural del tono que añade expresividad y calidez. Característico de cantantes clásicos y de jazz.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="vibrato">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[controlled vibrato]" id="check_vibrato_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Controlled Vibrato</td>
+                                                    <td><span class="badge bg-primary">Vibrato</span></td>
+                                                    <td>Vibrato aplicado de forma consciente y controlada. Permite ajustar la velocidad e intensidad según la expresión deseada.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="vibrato">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[delayed vibrato]" id="check_vibrato_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Delayed Vibrato</td>
+                                                    <td><span class="badge bg-primary">Vibrato</span></td>
+                                                    <td>Comienza con una nota recta y luego introduce el vibrato. Crea un efecto dramático y expresivo muy utilizado en baladas.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Falsete -->
+                                                <tr data-category="falsetto">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[falsetto]" id="check_falsetto_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Falsetto</td>
+                                                    <td><span class="badge bg-info">Falsete</span></td>
+                                                    <td>Registro vocal más ligero y aireado que permite alcanzar notas agudas. Común en R&B, pop y rock.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="falsetto">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[reinforced falsetto]" id="check_falsetto_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Reinforced Falsetto</td>
+                                                    <td><span class="badge bg-info">Falsete</span></td>
+                                                    <td>Falsete con mayor presión y resonancia. Más potente que el falsete tradicional pero mantiene su cualidad etérea.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="falsetto">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[breathy falsetto]" id="check_falsetto_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Breathy Falsetto</td>
+                                                    <td><span class="badge bg-info">Falsete</span></td>
+                                                    <td>Falsete con mayor cantidad de aire. Crea un sonido íntimo y vulnerable, ideal para baladas y momentos emotivos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Growl -->
+                                                <tr data-category="growl">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[growl]" id="check_growl_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Growl</td>
+                                                    <td><span class="badge bg-danger">Growl</span></td>
+                                                    <td>Sonido áspero y gutural que añade intensidad y agresividad. Común en rock, metal y blues.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="growl">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[distortion]" id="check_growl_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Distortion</td>
+                                                    <td><span class="badge bg-danger">Growl</span></td>
+                                                    <td>Añade ruido y aspereza a la voz. Menos extremo que el growl pero igualmente expresivo y enérgico.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="growl">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[rasp]" id="check_growl_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Rasp</td>
+                                                    <td><span class="badge bg-danger">Growl</span></td>
+                                                    <td>Añade un ligero raspado a la voz. Más sutil que la distorsión, aporta carácter y textura sin ser agresivo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Riffs y Runs -->
+                                                <tr data-category="riff">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[vocal runs]" id="check_riff_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Vocal Runs</td>
+                                                    <td><span class="badge bg-warning text-dark">Riffs y Runs</span></td>
+                                                    <td>Series rápidas de notas que demuestran agilidad vocal. Característico del R&B, gospel y soul.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="riff">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[melisma]" id="check_riff_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Melisma</td>
+                                                    <td><span class="badge bg-warning text-dark">Riffs y Runs</span></td>
+                                                    <td>Cantar múltiples notas en una sola sílaba. Técnica ornamental utilizada en música clásica, gospel y R&B contemporáneo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Susurro -->
+                                                <tr data-category="whisper">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[whisper singing]" id="check_whisper_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Whisper Singing</td>
+                                                    <td><span class="badge bg-secondary">Susurro</span></td>
+                                                    <td>Cantar con voz susurrada o muy suave. Crea intimidad y vulnerabilidad, ideal para momentos emotivos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="whisper">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[breathy voice]" id="check_whisper_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Breathy Voice</td>
+                                                    <td><span class="badge bg-secondary">Susurro</span></td>
+                                                    <td>Voz con mayor cantidad de aire que crea un sonido suave y sensual. Popular en pop y R&B contemporáneo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Vocal Fry -->
+                                                <tr data-category="vocal-fry">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[vocal fry]" id="check_fry_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Vocal Fry</td>
+                                                    <td><span class="badge bg-dark">Vocal Fry</span></td>
+                                                    <td>Registro vocal más bajo que produce un sonido crujiente o crepitante. Utilizado para añadir textura y carácter.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="vocal-fry">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[creaky voice]" id="check_fry_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Creaky Voice</td>
+                                                    <td><span class="badge bg-dark">Vocal Fry</span></td>
+                                                    <td>Similar al vocal fry pero más controlado y utilizado en el rango medio. Añade expresividad y emoción.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Yodel -->
+                                                <tr data-category="yodel">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[yodeling]" id="check_yodel_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Yodeling</td>
+                                                    <td><span class="badge bg-success">Yodel</span></td>
+                                                    <td>Cambio rápido entre voz de pecho y falsete. Tradicional en música folclórica alpina, también usado en country.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="yodel">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input tecnica-vocal" type="checkbox" value="[register break]" id="check_yodel_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Register Break</td>
+                                                    <td><span class="badge bg-success">Yodel</span></td>
+                                                    <td>Transición audible entre registros vocales. Puede usarse como efecto expresivo en diversos géneros.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Técnicas Personalizadas</h4>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCustomTechniqueModal">
+                                            <i class="bi bi-plus-circle"></i> Añadir técnica personalizada
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="customTechniquesTable">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th style="width: 5%">Seleccionar</th>
+                                                    <th style="width: 20%">Técnica</th>
+                                                    <th style="width: 15%">Categoría</th>
+                                                    <th style="width: 45%">Descripción</th>
+                                                    <th style="width: 15%">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="customTechniquesBody">
+                                                <!-- Aquí se añadirán las técnicas personalizadas -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card sticky-top" style="top: 20px;">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5 class="mb-0">Técnicas seleccionadas</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h6>Técnicas para Suno:</h6>
+                                                <div>
+                                                    <button class="btn btn-sm btn-outline-primary" id="btnSeleccionarTodos">Seleccionar todos</button>
+                                                    <button class="btn btn-sm btn-outline-secondary" id="btnDeseleccionarTodos">Deseleccionar todos</button>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-light">
+                                                <pre id="listaTecnicas" class="mb-0" style="white-space: pre-wrap; max-height: 300px; overflow-y: auto;">Selecciona técnicas para verlas aquí</pre>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary" id="btnCopiar">
+                                                <i class="bi bi-clipboard"></i> Copiar al portapapeles
+                                            </button>
+                                            <button class="btn btn-outline-success" id="btnGuardar">
+                                                <i class="bi bi-save"></i> Guardar como predefinido
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card mt-4">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0">Predefinidos guardados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="list-group" id="predefinidosGuardados">
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Voz Pop Moderna</h6>
+                                                    <small>4 técnicas</small>
+                                                </div>
+                                                <small class="text-muted">Creado el 20/05/2025</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Estilo R&B</h6>
+                                                    <small>5 técnicas</small>
+                                                </div>
+                                                <small class="text-muted">Creado el 19/05/2025</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para añadir técnica personalizada -->
+    <div class="modal fade" id="addCustomTechniqueModal" tabindex="-1" aria-labelledby="addCustomTechniqueModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="addCustomTechniqueModalLabel">Añadir técnica personalizada</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAddCustomTechnique">
+                        <div class="mb-3">
+                            <label for="customTechniqueName" class="form-label">Nombre de la técnica</label>
+                            <input type="text" class="form-control" id="customTechniqueName" placeholder="Ej: Staccato Vocal" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customTechniqueCategory" class="form-label">Categoría</label>
+                            <select class="form-select" id="customTechniqueCategory" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="belting">Belting</option>
+                                <option value="vibrato">Vibrato</option>
+                                <option value="falsetto">Falsete</option>
+                                <option value="growl">Growl</option>
+                                <option value="riff">Riffs y Runs</option>
+                                <option value="whisper">Susurro</option>
+                                <option value="vocal-fry">Vocal Fry</option>
+                                <option value="yodel">Yodel</option>
+                                <option value="custom">Personalizado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customTechniqueDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="customTechniqueDescription" rows="3" placeholder="Describe la técnica y su uso"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnAddCustomTechnique">Añadir técnica</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para guardar predefinido -->
+    <div class="modal fade" id="guardarPredefinidoModal" tabindex="-1" aria-labelledby="guardarPredefinidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="guardarPredefinidoModalLabel">Guardar como predefinido</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formGuardarPredefinido">
+                        <div class="mb-3">
+                            <label for="nombrePredefinido" class="form-label">Nombre del predefinido</label>
+                            <input type="text" class="form-control" id="nombrePredefinido" placeholder="Ej: Voz Pop Moderna" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionPredefinido" class="form-label">Descripción (opcional)</label>
+                            <textarea class="form-control" id="descripcionPredefinido" rows="3" placeholder="Describe para qué sirve este conjunto de técnicas"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnConfirmarGuardar">Guardar predefinido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const checkboxes = document.querySelectorAll('.tecnica-vocal');
+            const listaTecnicas = document.getElementById('listaTecnicas');
+            const btnCopiar = document.getElementById('btnCopiar');
+            const btnGuardar = document.getElementById('btnGuardar');
+            const btnSeleccionarTodos = document.getElementById('btnSeleccionarTodos');
+            const btnDeseleccionarTodos = document.getElementById('btnDeseleccionarTodos');
+            const btnAddCustomTechnique = document.getElementById('btnAddCustomTechnique');
+            const customTechniquesBody = document.getElementById('customTechniquesBody');
+            const btnConfirmarGuardar = document.getElementById('btnConfirmarGuardar');
+            const searchInput = document.getElementById('searchInput');
+            const btnSearch = document.getElementById('btnSearch');
+            const dropdownFilter = document.getElementById('dropdownFilter');
+            
+            // Contador para IDs únicos de técnicas personalizadas
+            let contadorTecnicas = 0;
+            
+            // Función para actualizar la lista de técnicas seleccionadas
+            function actualizarLista() {
+                const tecnicasSeleccionadas = Array.from(document.querySelectorAll('.tecnica-vocal:checked')).map(el => el.value);
+                
+                if (tecnicasSeleccionadas.length === 0) {
+                    listaTecnicas.textContent = 'Selecciona técnicas para verlas aquí';
+                } else {
+                    listaTecnicas.textContent = tecnicasSeleccionadas.join('\n');
+                }
+            }
+            
+            // Event listeners para checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', actualizarLista);
+            });
+            
+            // Botón para copiar al portapapeles
+            btnCopiar.addEventListener('click', function() {
+                const texto = listaTecnicas.textContent;
+                
+                if (texto === 'Selecciona técnicas para verlas aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay técnicas seleccionadas para copiar.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                navigator.clipboard.writeText(texto).then(() => {
+                    // Mostrar mensaje de éxito
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-success text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Técnicas copiadas al portapapeles correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                });
+            });
+            
+            // Botón para guardar como predefinido
+            btnGuardar.addEventListener('click', function() {
+                const texto = listaTecnicas.textContent;
+                
+                if (texto === 'Selecciona técnicas para verlas aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay técnicas seleccionadas para guardar como predefinido.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                // Mostrar modal para guardar predefinido
+                const modal = new bootstrap.Modal(document.getElementById('guardarPredefinidoModal'));
+                modal.show();
+            });
+            
+            // Confirmar guardar predefinido
+            btnConfirmarGuardar.addEventListener('click', function() {
+                const nombrePredefinido = document.getElementById('nombrePredefinido').value;
+                
+                if (!nombrePredefinido) {
+                    alert('Por favor, introduce un nombre para el predefinido.');
+                    return;
+                }
+                
+                // Obtener técnicas seleccionadas
+                const tecnicasSeleccionadas = Array.from(document.querySelectorAll('.tecnica-vocal:checked')).map(el => el.value);
+                
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('guardarPredefinidoModal'));
+                modal.hide();
+                
+                // Añadir a la lista de predefinidos guardados
+                const fechaActual = new Date().toLocaleDateString();
+                const predefinidosGuardados = document.getElementById('predefinidosGuardados');
+                
+                const nuevoPredefinido = document.createElement('a');
+                nuevoPredefinido.href = '#';
+                nuevoPredefinido.className = 'list-group-item list-group-item-action';
+                nuevoPredefinido.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">${nombrePredefinido}</h6>
+                        <small>${tecnicasSeleccionadas.length} técnicas</small>
+                    </div>
+                    <small class="text-muted">Creado el ${fechaActual}</small>
+                `;
+                
+                predefinidosGuardados.prepend(nuevoPredefinido);
+                
+                // Mostrar mensaje de éxito
+                const toast = document.createElement('div');
+                toast.className = 'position-fixed bottom-0 end-0 p-3';
+                toast.style.zIndex = '11';
+                
+                toast.innerHTML = `
+                    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-success text-white">
+                            <strong class="me-auto">Estudio Musical Virtual</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Predefinido "${nombrePredefinido}" guardado correctamente.
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Eliminar después de 3 segundos
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 3000);
+                
+                // Limpiar formulario
+                document.getElementById('formGuardarPredefinido').reset();
+            });
+            
+            // Botones para seleccionar/deseleccionar todos
+            btnSeleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                actualizarLista();
+            });
+            
+            btnDeseleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                actualizarLista();
+            });
+            
+            // Añadir técnica personalizada
+            btnAddCustomTechnique.addEventListener('click', function() {
+                const nombre = document.getElementById('customTechniqueName').value.trim();
+                const categoria = document.getElementById('customTechniqueCategory').value;
+                const descripcion = document.getElementById('customTechniqueDescription').value.trim();
+                
+                if (!nombre || !categoria) {
+                    alert('Por favor, completa los campos obligatorios.');
+                    return;
+                }
+                
+                // Crear elemento con corchetes si no los tiene
+                let valorTecnica = `[${nombre.toLowerCase().replace(/\s+/g, ' ')}]`;
+                
+                // Obtener etiqueta de categoría
+                let categoriaLabel = '';
+                let categoriaBadge = '';
+                
+                switch(categoria) {
+                    case 'belting':
+                        categoriaLabel = 'Belting';
+                        categoriaBadge = 'bg-danger';
+                        break;
+                    case 'vibrato':
+                        categoriaLabel = 'Vibrato';
+                        categoriaBadge = 'bg-primary';
+                        break;
+                    case 'falsetto':
+                        categoriaLabel = 'Falsete';
+                        categoriaBadge = 'bg-info';
+                        break;
+                    case 'growl':
+                        categoriaLabel = 'Growl';
+                        categoriaBadge = 'bg-danger';
+                        break;
+                    case 'riff':
+                        categoriaLabel = 'Riffs y Runs';
+                        categoriaBadge = 'bg-warning text-dark';
+                        break;
+                    case 'whisper':
+                        categoriaLabel = 'Susurro';
+                        categoriaBadge = 'bg-secondary';
+                        break;
+                    case 'vocal-fry':
+                        categoriaLabel = 'Vocal Fry';
+                        categoriaBadge = 'bg-dark';
+                        break;
+                    case 'yodel':
+                        categoriaLabel = 'Yodel';
+                        categoriaBadge = 'bg-success';
+                        break;
+                    default:
+                        categoriaLabel = 'Personalizado';
+                        categoriaBadge = 'bg-light text-dark';
+                }
+                
+                // Crear nuevo elemento
+                contadorTecnicas++;
+                const id = `checkCustomTech_${contadorTecnicas}`;
+                
+                const nuevaFila = document.createElement('tr');
+                nuevaFila.setAttribute('data-category', categoria);
+                nuevaFila.innerHTML = `
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input tecnica-vocal" type="checkbox" value="${valorTecnica}" id="${id}" checked>
+                        </div>
+                    </td>
+                    <td>${nombre}</td>
+                    <td><span class="badge ${categoriaBadge}">${categoriaLabel}</span></td>
+                    <td>${descripcion || 'Sin descripción'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger btn-eliminar-tecnica">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                customTechniquesBody.appendChild(nuevaFila);
+                
+                // Añadir event listener al nuevo checkbox
+                document.getElementById(id).addEventListener('change', actualizarLista);
+                
+                // Añadir event listener al botón de eliminar
+                nuevaFila.querySelector('.btn-eliminar-tecnica').addEventListener('click', function() {
+                    customTechniquesBody.removeChild(nuevaFila);
+                    actualizarLista();
+                });
+                
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addCustomTechniqueModal'));
+                modal.hide();
+                
+                // Limpiar formulario
+                document.getElementById('formAddCustomTechnique').reset();
+                
+                // Actualizar lista
+                actualizarLista();
+            });
+            
+            // Cargar predefinido al hacer clic en él
+            document.getElementById('predefinidosGuardados').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (e.target.closest('.list-group-item')) {
+                    // Mostrar mensaje
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-info text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Predefinido cargado correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                }
+            });
+            
+            // Filtrar por categoría
+            document.querySelectorAll('[data-filter]').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const filter = this.dataset.filter;
+                    const rows = document.querySelectorAll('tbody tr');
+                    
+                    rows.forEach(row => {
+                        if (filter === 'all' || row.dataset.category === filter) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Buscar técnicas
+            function buscarTecnicas() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            btnSearch.addEventListener('click', buscarTecnicas);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    buscarTecnicas();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

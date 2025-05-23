@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efectos - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructura-cancion"><i class="bi bi-music-player"></i> Estructura Canción</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        <h3><i class="bi bi-soundwave"></i> Biblioteca de Efectos</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h4>Efectos de Audio</h4>
+                                            <p class="text-muted">Selecciona los efectos que deseas utilizar en tu producción</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <div class="input-group me-2" style="width: 300px;">
+                                                <input type="text" class="form-control" id="searchInput" placeholder="Buscar efectos...">
+                                                <button class="btn btn-outline-secondary" type="button" id="btnSearch">
+                                                    <i class="bi bi-search"></i>
+                                                </button>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFilter" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="bi bi-filter"></i> Filtrar
+                                                </button>
+                                                <ul class="dropdown-menu" aria-labelledby="dropdownFilter">
+                                                    <li><a class="dropdown-item" href="#" data-filter="all">Todos los efectos</a></li>
+                                                    <li><hr class="dropdown-divider"></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="reverb">Reverberación</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="delay">Delay</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="distortion">Distorsión</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="modulation">Modulación</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="dynamics">Dinámica</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="filter">Filtros</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="pitch">Pitch</a></li>
+                                                    <li><a class="dropdown-item" href="#" data-filter="time">Tiempo</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th style="width: 5%">Seleccionar</th>
+                                                    <th style="width: 20%">Efecto</th>
+                                                    <th style="width: 15%">Categoría</th>
+                                                    <th style="width: 45%">Descripción</th>
+                                                    <th style="width: 15%">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <!-- Reverberación -->
+                                                <tr data-category="reverb">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[hall reverb]" id="check_reverb_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Hall Reverb</td>
+                                                    <td><span class="badge bg-info">Reverberación</span></td>
+                                                    <td>Simula la acústica de una sala de conciertos grande. Ideal para dar profundidad y espacio a voces e instrumentos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="reverb">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[room reverb]" id="check_reverb_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Room Reverb</td>
+                                                    <td><span class="badge bg-info">Reverberación</span></td>
+                                                    <td>Reverberación de habitación mediana. Proporciona un sonido más íntimo y cercano que el Hall Reverb.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="reverb">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[plate reverb]" id="check_reverb_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Plate Reverb</td>
+                                                    <td><span class="badge bg-info">Reverberación</span></td>
+                                                    <td>Emula la reverberación de placa clásica. Brillante y densa, ideal para voces y percusión.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="reverb">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[spring reverb]" id="check_reverb_4">
+                                                        </div>
+                                                    </td>
+                                                    <td>Spring Reverb</td>
+                                                    <td><span class="badge bg-info">Reverberación</span></td>
+                                                    <td>Reverberación de muelle clásica. Característica de amplificadores de guitarra vintage, con un sonido metálico distintivo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="reverb">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[shimmer reverb]" id="check_reverb_5">
+                                                        </div>
+                                                    </td>
+                                                    <td>Shimmer Reverb</td>
+                                                    <td><span class="badge bg-info">Reverberación</span></td>
+                                                    <td>Reverberación con pitch shifting que crea un efecto brillante y etéreo. Perfecto para ambientes atmosféricos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Delay -->
+                                                <tr data-category="delay">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[digital delay]" id="check_delay_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Digital Delay</td>
+                                                    <td><span class="badge bg-warning text-dark">Delay</span></td>
+                                                    <td>Eco limpio y preciso. Ideal para crear profundidad sin colorear el sonido original.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="delay">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[analog delay]" id="check_delay_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Analog Delay</td>
+                                                    <td><span class="badge bg-warning text-dark">Delay</span></td>
+                                                    <td>Emula el sonido cálido y degradado de los delays analógicos vintage. Cada repetición pierde un poco de definición.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="delay">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[tape delay]" id="check_delay_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Tape Delay</td>
+                                                    <td><span class="badge bg-warning text-dark">Delay</span></td>
+                                                    <td>Emula el eco de cinta clásico con su característica saturación, wow y flutter. Añade calidez y textura vintage.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="delay">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[ping pong delay]" id="check_delay_4">
+                                                        </div>
+                                                    </td>
+                                                    <td>Ping Pong Delay</td>
+                                                    <td><span class="badge bg-warning text-dark">Delay</span></td>
+                                                    <td>Las repeticiones rebotan entre los canales izquierdo y derecho, creando un efecto espacial estéreo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Distorsión -->
+                                                <tr data-category="distortion">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[tube overdrive]" id="check_dist_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Tube Overdrive</td>
+                                                    <td><span class="badge bg-danger">Distorsión</span></td>
+                                                    <td>Saturación suave que emula la distorsión de válvulas. Añade calidez y armónicos sutiles.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="distortion">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[fuzz]" id="check_dist_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Fuzz</td>
+                                                    <td><span class="badge bg-danger">Distorsión</span></td>
+                                                    <td>Distorsión extrema y áspera que transforma completamente el sonido. Característico de rock psicodélico y alternativo.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="distortion">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[bit crusher]" id="check_dist_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Bit Crusher</td>
+                                                    <td><span class="badge bg-danger">Distorsión</span></td>
+                                                    <td>Reduce la resolución de bits y la frecuencia de muestreo para crear efectos lo-fi y distorsión digital.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Modulación -->
+                                                <tr data-category="modulation">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[chorus]" id="check_mod_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Chorus</td>
+                                                    <td><span class="badge bg-primary">Modulación</span></td>
+                                                    <td>Crea una sensación de múltiples voces o instrumentos tocando al unísono. Añade riqueza y amplitud.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="modulation">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[flanger]" id="check_mod_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Flanger</td>
+                                                    <td><span class="badge bg-primary">Modulación</span></td>
+                                                    <td>Crea un sonido de barrido característico mediante la mezcla de la señal original con una copia ligeramente retrasada y modulada.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="modulation">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[phaser]" id="check_mod_3">
+                                                        </div>
+                                                    </td>
+                                                    <td>Phaser</td>
+                                                    <td><span class="badge bg-primary">Modulación</span></td>
+                                                    <td>Crea un efecto de barrido mediante filtros de fase. Característico en guitarras y teclados de los 70s.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="modulation">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[tremolo]" id="check_mod_4">
+                                                        </div>
+                                                    </td>
+                                                    <td>Tremolo</td>
+                                                    <td><span class="badge bg-primary">Modulación</span></td>
+                                                    <td>Modulación rápida del volumen que crea un efecto pulsante. Clásico en guitarras surf y rock de los 60s.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Dinámica -->
+                                                <tr data-category="dynamics">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[compressor]" id="check_dyn_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Compressor</td>
+                                                    <td><span class="badge bg-secondary">Dinámica</span></td>
+                                                    <td>Reduce el rango dinámico, haciendo que los sonidos suaves sean más audibles y los fuertes menos intensos. Fundamental en mezcla.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="dynamics">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[limiter]" id="check_dyn_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Limiter</td>
+                                                    <td><span class="badge bg-secondary">Dinámica</span></td>
+                                                    <td>Forma extrema de compresión que evita que la señal supere un umbral determinado. Esencial para masterización.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Filtros -->
+                                                <tr data-category="filter">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[wah-wah]" id="check_filter_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Wah-Wah</td>
+                                                    <td><span class="badge bg-dark">Filtro</span></td>
+                                                    <td>Filtro de barrido que crea un efecto similar a una voz diciendo "wah". Icónico en guitarras funk y rock.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="filter">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[auto-filter]" id="check_filter_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Auto-Filter</td>
+                                                    <td><span class="badge bg-dark">Filtro</span></td>
+                                                    <td>Filtro controlado por envolvente que responde a la dinámica de la señal de entrada. Ideal para efectos expresivos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Pitch -->
+                                                <tr data-category="pitch">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[pitch shifter]" id="check_pitch_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Pitch Shifter</td>
+                                                    <td><span class="badge bg-success">Pitch</span></td>
+                                                    <td>Altera el tono de la señal sin cambiar su duración. Útil para armonías, efectos especiales o corrección de tono.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="pitch">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[harmonizer]" id="check_pitch_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Harmonizer</td>
+                                                    <td><span class="badge bg-success">Pitch</span></td>
+                                                    <td>Crea armonías musicalmente relacionadas con la señal original. Perfecto para engrosar voces o instrumentos.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                
+                                                <!-- Tiempo -->
+                                                <tr data-category="time">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[time stretching]" id="check_time_1">
+                                                        </div>
+                                                    </td>
+                                                    <td>Time Stretching</td>
+                                                    <td><span class="badge bg-warning text-dark">Tiempo</span></td>
+                                                    <td>Altera la duración de un audio sin cambiar su tono. Útil para ajustar samples a un tempo específico.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                <tr data-category="time">
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input efecto-audio" type="checkbox" value="[reverse]" id="check_time_2">
+                                                        </div>
+                                                    </td>
+                                                    <td>Reverse</td>
+                                                    <td><span class="badge bg-warning text-dark">Tiempo</span></td>
+                                                    <td>Invierte la reproducción del audio. Crea efectos psicodélicos y texturas únicas.</td>
+                                                    <td>
+                                                        <button class="btn btn-sm btn-outline-secondary" title="Escuchar ejemplo">
+                                                            <i class="bi bi-play-circle"></i>
+                                                        </button>
+                                                        <button class="btn btn-sm btn-outline-primary" title="Añadir a favoritos">
+                                                            <i class="bi bi-star"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4>Efectos Personalizados</h4>
+                                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCustomEffectModal">
+                                            <i class="bi bi-plus-circle"></i> Añadir efecto personalizado
+                                        </button>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover" id="customEffectsTable">
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th style="width: 5%">Seleccionar</th>
+                                                    <th style="width: 20%">Efecto</th>
+                                                    <th style="width: 15%">Categoría</th>
+                                                    <th style="width: 45%">Descripción</th>
+                                                    <th style="width: 15%">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="customEffectsBody">
+                                                <!-- Aquí se añadirán los efectos personalizados -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="card sticky-top" style="top: 20px;">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">Efectos seleccionados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between mb-2">
+                                                <h6>Efectos para Suno:</h6>
+                                                <div>
+                                                    <button class="btn btn-sm btn-outline-primary" id="btnSeleccionarTodos">Seleccionar todos</button>
+                                                    <button class="btn btn-sm btn-outline-secondary" id="btnDeseleccionarTodos">Deseleccionar todos</button>
+                                                </div>
+                                            </div>
+                                            <div class="alert alert-light">
+                                                <pre id="listaEfectos" class="mb-0" style="white-space: pre-wrap; max-height: 300px; overflow-y: auto;">Selecciona efectos para verlos aquí</pre>
+                                            </div>
+                                        </div>
+                                        <div class="d-grid gap-2">
+                                            <button class="btn btn-primary" id="btnCopiar">
+                                                <i class="bi bi-clipboard"></i> Copiar al portapapeles
+                                            </button>
+                                            <button class="btn btn-outline-success" id="btnGuardar">
+                                                <i class="bi bi-save"></i> Guardar como predefinido
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="card mt-4">
+                                    <div class="card-header bg-info text-white">
+                                        <h5 class="mb-0">Predefinidos guardados</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="list-group" id="predefinidosGuardados">
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Vocal Pop Moderno</h6>
+                                                    <small>5 efectos</small>
+                                                </div>
+                                                <small class="text-muted">Creado el 20/05/2025</small>
+                                            </a>
+                                            <a href="#" class="list-group-item list-group-item-action">
+                                                <div class="d-flex w-100 justify-content-between">
+                                                    <h6 class="mb-1">Guitarra Ambiental</h6>
+                                                    <small>4 efectos</small>
+                                                </div>
+                                                <small class="text-muted">Creado el 19/05/2025</small>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para añadir efecto personalizado -->
+    <div class="modal fade" id="addCustomEffectModal" tabindex="-1" aria-labelledby="addCustomEffectModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="addCustomEffectModalLabel">Añadir efecto personalizado</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formAddCustomEffect">
+                        <div class="mb-3">
+                            <label for="customEffectName" class="form-label">Nombre del efecto</label>
+                            <input type="text" class="form-control" id="customEffectName" placeholder="Ej: Vocal Doubler" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customEffectCategory" class="form-label">Categoría</label>
+                            <select class="form-select" id="customEffectCategory" required>
+                                <option value="">Selecciona una categoría</option>
+                                <option value="reverb">Reverberación</option>
+                                <option value="delay">Delay</option>
+                                <option value="distortion">Distorsión</option>
+                                <option value="modulation">Modulación</option>
+                                <option value="dynamics">Dinámica</option>
+                                <option value="filter">Filtros</option>
+                                <option value="pitch">Pitch</option>
+                                <option value="time">Tiempo</option>
+                                <option value="custom">Personalizado</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customEffectDescription" class="form-label">Descripción</label>
+                            <textarea class="form-control" id="customEffectDescription" rows="3" placeholder="Describe el efecto y su uso"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnAddCustomEffect">Añadir efecto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para guardar predefinido -->
+    <div class="modal fade" id="guardarPredefinidoModal" tabindex="-1" aria-labelledby="guardarPredefinidoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="guardarPredefinidoModalLabel">Guardar como predefinido</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formGuardarPredefinido">
+                        <div class="mb-3">
+                            <label for="nombrePredefinido" class="form-label">Nombre del predefinido</label>
+                            <input type="text" class="form-control" id="nombrePredefinido" placeholder="Ej: Vocal Pop Moderno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="descripcionPredefinido" class="form-label">Descripción (opcional)</label>
+                            <textarea class="form-control" id="descripcionPredefinido" rows="3" placeholder="Describe para qué sirve este conjunto de efectos"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btnConfirmarGuardar">Guardar predefinido</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const checkboxes = document.querySelectorAll('.efecto-audio');
+            const listaEfectos = document.getElementById('listaEfectos');
+            const btnCopiar = document.getElementById('btnCopiar');
+            const btnGuardar = document.getElementById('btnGuardar');
+            const btnSeleccionarTodos = document.getElementById('btnSeleccionarTodos');
+            const btnDeseleccionarTodos = document.getElementById('btnDeseleccionarTodos');
+            const btnAddCustomEffect = document.getElementById('btnAddCustomEffect');
+            const customEffectsBody = document.getElementById('customEffectsBody');
+            const btnConfirmarGuardar = document.getElementById('btnConfirmarGuardar');
+            const searchInput = document.getElementById('searchInput');
+            const btnSearch = document.getElementById('btnSearch');
+            const dropdownFilter = document.getElementById('dropdownFilter');
+            
+            // Contador para IDs únicos de efectos personalizados
+            let contadorEfectos = 0;
+            
+            // Función para actualizar la lista de efectos seleccionados
+            function actualizarLista() {
+                const efectosSeleccionados = Array.from(document.querySelectorAll('.efecto-audio:checked')).map(el => el.value);
+                
+                if (efectosSeleccionados.length === 0) {
+                    listaEfectos.textContent = 'Selecciona efectos para verlos aquí';
+                } else {
+                    listaEfectos.textContent = efectosSeleccionados.join('\n');
+                }
+            }
+            
+            // Event listeners para checkboxes
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', actualizarLista);
+            });
+            
+            // Botón para copiar al portapapeles
+            btnCopiar.addEventListener('click', function() {
+                const texto = listaEfectos.textContent;
+                
+                if (texto === 'Selecciona efectos para verlos aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay efectos seleccionados para copiar.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                navigator.clipboard.writeText(texto).then(() => {
+                    // Mostrar mensaje de éxito
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-success text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Efectos copiados al portapapeles correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                });
+            });
+            
+            // Botón para guardar como predefinido
+            btnGuardar.addEventListener('click', function() {
+                const texto = listaEfectos.textContent;
+                
+                if (texto === 'Selecciona efectos para verlos aquí') {
+                    // Mostrar mensaje de error
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-danger text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                No hay efectos seleccionados para guardar como predefinido.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                    
+                    return;
+                }
+                
+                // Mostrar modal para guardar predefinido
+                const modal = new bootstrap.Modal(document.getElementById('guardarPredefinidoModal'));
+                modal.show();
+            });
+            
+            // Confirmar guardar predefinido
+            btnConfirmarGuardar.addEventListener('click', function() {
+                const nombrePredefinido = document.getElementById('nombrePredefinido').value;
+                
+                if (!nombrePredefinido) {
+                    alert('Por favor, introduce un nombre para el predefinido.');
+                    return;
+                }
+                
+                // Obtener efectos seleccionados
+                const efectosSeleccionados = Array.from(document.querySelectorAll('.efecto-audio:checked')).map(el => el.value);
+                
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('guardarPredefinidoModal'));
+                modal.hide();
+                
+                // Añadir a la lista de predefinidos guardados
+                const fechaActual = new Date().toLocaleDateString();
+                const predefinidosGuardados = document.getElementById('predefinidosGuardados');
+                
+                const nuevoPredefinido = document.createElement('a');
+                nuevoPredefinido.href = '#';
+                nuevoPredefinido.className = 'list-group-item list-group-item-action';
+                nuevoPredefinido.innerHTML = `
+                    <div class="d-flex w-100 justify-content-between">
+                        <h6 class="mb-1">${nombrePredefinido}</h6>
+                        <small>${efectosSeleccionados.length} efectos</small>
+                    </div>
+                    <small class="text-muted">Creado el ${fechaActual}</small>
+                `;
+                
+                predefinidosGuardados.prepend(nuevoPredefinido);
+                
+                // Mostrar mensaje de éxito
+                const toast = document.createElement('div');
+                toast.className = 'position-fixed bottom-0 end-0 p-3';
+                toast.style.zIndex = '11';
+                
+                toast.innerHTML = `
+                    <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-success text-white">
+                            <strong class="me-auto">Estudio Musical Virtual</strong>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                        <div class="toast-body">
+                            Predefinido "${nombrePredefinido}" guardado correctamente.
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Eliminar después de 3 segundos
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 3000);
+                
+                // Limpiar formulario
+                document.getElementById('formGuardarPredefinido').reset();
+            });
+            
+            // Botones para seleccionar/deseleccionar todos
+            btnSeleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = true;
+                });
+                actualizarLista();
+            });
+            
+            btnDeseleccionarTodos.addEventListener('click', function() {
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                actualizarLista();
+            });
+            
+            // Añadir efecto personalizado
+            btnAddCustomEffect.addEventListener('click', function() {
+                const nombre = document.getElementById('customEffectName').value.trim();
+                const categoria = document.getElementById('customEffectCategory').value;
+                const descripcion = document.getElementById('customEffectDescription').value.trim();
+                
+                if (!nombre || !categoria) {
+                    alert('Por favor, completa los campos obligatorios.');
+                    return;
+                }
+                
+                // Crear elemento con corchetes si no los tiene
+                let valorEfecto = `[${nombre.toLowerCase().replace(/\s+/g, ' ')}]`;
+                
+                // Obtener etiqueta de categoría
+                let categoriaLabel = '';
+                let categoriaBadge = '';
+                
+                switch(categoria) {
+                    case 'reverb':
+                        categoriaLabel = 'Reverberación';
+                        categoriaBadge = 'bg-info';
+                        break;
+                    case 'delay':
+                        categoriaLabel = 'Delay';
+                        categoriaBadge = 'bg-warning text-dark';
+                        break;
+                    case 'distortion':
+                        categoriaLabel = 'Distorsión';
+                        categoriaBadge = 'bg-danger';
+                        break;
+                    case 'modulation':
+                        categoriaLabel = 'Modulación';
+                        categoriaBadge = 'bg-primary';
+                        break;
+                    case 'dynamics':
+                        categoriaLabel = 'Dinámica';
+                        categoriaBadge = 'bg-secondary';
+                        break;
+                    case 'filter':
+                        categoriaLabel = 'Filtro';
+                        categoriaBadge = 'bg-dark';
+                        break;
+                    case 'pitch':
+                        categoriaLabel = 'Pitch';
+                        categoriaBadge = 'bg-success';
+                        break;
+                    case 'time':
+                        categoriaLabel = 'Tiempo';
+                        categoriaBadge = 'bg-warning text-dark';
+                        break;
+                    default:
+                        categoriaLabel = 'Personalizado';
+                        categoriaBadge = 'bg-light text-dark';
+                }
+                
+                // Crear nuevo elemento
+                contadorEfectos++;
+                const id = `checkCustom_${contadorEfectos}`;
+                
+                const nuevaFila = document.createElement('tr');
+                nuevaFila.setAttribute('data-category', categoria);
+                nuevaFila.innerHTML = `
+                    <td>
+                        <div class="form-check">
+                            <input class="form-check-input efecto-audio" type="checkbox" value="${valorEfecto}" id="${id}" checked>
+                        </div>
+                    </td>
+                    <td>${nombre}</td>
+                    <td><span class="badge ${categoriaBadge}">${categoriaLabel}</span></td>
+                    <td>${descripcion || 'Sin descripción'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger btn-eliminar-efecto">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                customEffectsBody.appendChild(nuevaFila);
+                
+                // Añadir event listener al nuevo checkbox
+                document.getElementById(id).addEventListener('change', actualizarLista);
+                
+                // Añadir event listener al botón de eliminar
+                nuevaFila.querySelector('.btn-eliminar-efecto').addEventListener('click', function() {
+                    customEffectsBody.removeChild(nuevaFila);
+                    actualizarLista();
+                });
+                
+                // Cerrar modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('addCustomEffectModal'));
+                modal.hide();
+                
+                // Limpiar formulario
+                document.getElementById('formAddCustomEffect').reset();
+                
+                // Actualizar lista
+                actualizarLista();
+            });
+            
+            // Cargar predefinido al hacer clic en él
+            document.getElementById('predefinidosGuardados').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                if (e.target.closest('.list-group-item')) {
+                    // Mostrar mensaje
+                    const toast = document.createElement('div');
+                    toast.className = 'position-fixed bottom-0 end-0 p-3';
+                    toast.style.zIndex = '11';
+                    
+                    toast.innerHTML = `
+                        <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header bg-info text-white">
+                                <strong class="me-auto">Estudio Musical Virtual</strong>
+                                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                Predefinido cargado correctamente.
+                            </div>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(toast);
+                    
+                    // Eliminar después de 3 segundos
+                    setTimeout(() => {
+                        document.body.removeChild(toast);
+                    }, 3000);
+                }
+            });
+            
+            // Filtrar por categoría
+            document.querySelectorAll('[data-filter]').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const filter = this.dataset.filter;
+                    const rows = document.querySelectorAll('tbody tr');
+                    
+                    rows.forEach(row => {
+                        if (filter === 'all' || row.dataset.category === filter) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Buscar efectos
+            function buscarEfectos() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const rows = document.querySelectorAll('tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+            
+            btnSearch.addEventListener('click', buscarEfectos);
+            searchInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    buscarEfectos();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estructuras - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3><i class="bi bi-diagram-3"></i> Estructuras de Canciones</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Buscar estructuras...">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Filtrar por género</option>
+                                    <option value="Pop">Pop</option>
+                                    <option value="Rock">Rock</option>
+                                    <option value="Hip-Hop">Hip-Hop/Rap</option>
+                                    <option value="R&B">R&B</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <!-- Estructura 1 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">Verso-Coro-Verso-Coro-Puente-Coro</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">La estructura más común en la música pop moderna.</p>
+                                        <h6>Elementos:</h6>
+                                        <ul>
+                                            <li><strong>Verso 1:</strong> Introduce la historia o tema</li>
+                                            <li><strong>Coro:</strong> Parte más pegadiza y memorable</li>
+                                            <li><strong>Verso 2:</strong> Continúa la narrativa</li>
+                                            <li><strong>Coro:</strong> Repetición para reforzar el mensaje</li>
+                                            <li><strong>Puente:</strong> Contraste musical y lírico</li>
+                                            <li><strong>Coro:</strong> Cierre con la parte más memorable</li>
+                                        </ul>
+                                        <h6>Géneros comunes:</h6>
+                                        <p>Pop, Rock, Country</p>
+                                        <h6>Ejemplos:</h6>
+                                        <p>"Shape of You" - Ed Sheeran, "Someone Like You" - Adele</p>
+                                        <button class="btn btn-outline-primary mt-2">
+                                            <i class="bi bi-file-earmark-text"></i> Usar como plantilla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Estructura 2 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">Intro-Verso-Coro-Verso-Coro-Rap-Outro</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Estructura moderna que incorpora elementos de rap en canciones pop.</p>
+                                        <h6>Elementos:</h6>
+                                        <ul>
+                                            <li><strong>Intro:</strong> Establecimiento del ambiente</li>
+                                            <li><strong>Verso 1:</strong> Introduce la historia</li>
+                                            <li><strong>Coro:</strong> Parte pegadiza y memorable</li>
+                                            <li><strong>Verso 2:</strong> Continúa la narrativa</li>
+                                            <li><strong>Coro:</strong> Repetición del gancho principal</li>
+                                            <li><strong>Rap:</strong> Sección con ritmo hablado rápido</li>
+                                            <li><strong>Outro:</strong> Cierre que desvanece la canción</li>
+                                        </ul>
+                                        <h6>Géneros comunes:</h6>
+                                        <p>Pop contemporáneo, Hip-Hop/Pop, R&B moderno</p>
+                                        <h6>Ejemplos:</h6>
+                                        <p>"Havana" - Camila Cabello, "Girls Like You" - Maroon 5</p>
+                                        <button class="btn btn-outline-primary mt-2">
+                                            <i class="bi bi-file-earmark-text"></i> Usar como plantilla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Estructura 3 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">Verso-PreCoro-Coro-Verso-PreCoro-Coro-Puente-Coro</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Estructura elaborada con pre-coro que construye tensión antes del coro.</p>
+                                        <h6>Elementos:</h6>
+                                        <ul>
+                                            <li><strong>Verso 1:</strong> Establece la narrativa</li>
+                                            <li><strong>Pre-Coro:</strong> Construye tensión hacia el coro</li>
+                                            <li><strong>Coro:</strong> Liberación emocional y gancho principal</li>
+                                            <li><strong>Verso 2:</strong> Continúa la historia</li>
+                                            <li><strong>Pre-Coro:</strong> Repite la construcción de tensión</li>
+                                            <li><strong>Coro:</strong> Refuerza el mensaje principal</li>
+                                            <li><strong>Puente:</strong> Contraste y cambio de perspectiva</li>
+                                            <li><strong>Coro:</strong> Cierre con el gancho principal</li>
+                                        </ul>
+                                        <h6>Géneros comunes:</h6>
+                                        <p>Pop elaborado, Rock alternativo, Baladas</p>
+                                        <h6>Ejemplos:</h6>
+                                        <p>"Chandelier" - Sia, "Rolling in the Deep" - Adele</p>
+                                        <button class="btn btn-outline-primary mt-2">
+                                            <i class="bi bi-file-earmark-text"></i> Usar como plantilla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Estructura 4 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-header bg-success text-white">
+                                        <h5 class="mb-0">AABA (Jazz)</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text">Estructura clásica del jazz y los estándares americanos.</p>
+                                        <h6>Elementos:</h6>
+                                        <ul>
+                                            <li><strong>A:</strong> Tema principal (8 compases)</li>
+                                            <li><strong>A:</strong> Repetición del tema principal</li>
+                                            <li><strong>B:</strong> Sección contrastante o "puente" (8 compases)</li>
+                                            <li><strong>A:</strong> Retorno al tema principal</li>
+                                        </ul>
+                                        <h6>Géneros comunes:</h6>
+                                        <p>Jazz, Estándares americanos, Música tradicional</p>
+                                        <h6>Ejemplos:</h6>
+                                        <p>"Somewhere Over the Rainbow", "The Way You Look Tonight"</p>
+                                        <button class="btn btn-outline-primary mt-2">
+                                            <i class="bi bi-file-earmark-text"></i> Usar como plantilla
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <nav aria-label="Paginación de estructuras">
+                            <ul class="pagination justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Siguiente</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

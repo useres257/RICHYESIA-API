@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referencias - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3><i class="bi bi-book"></i> Referencias Históricas</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Buscar artistas...">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        <i class="bi bi-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select">
+                                    <option selected>Filtrar por tipo</option>
+                                    <option value="Cantantes">Cantantes</option>
+                                    <option value="Trompetistas">Trompetistas</option>
+                                    <option value="Compositores">Compositores</option>
+                                    <option value="Productores">Productores</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <ul class="nav nav-tabs mb-4" id="referenciasTabs" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link active" id="cantantes-tab" data-bs-toggle="tab" data-bs-target="#cantantes" type="button" role="tab" aria-controls="cantantes" aria-selected="true">Cantantes</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="trompetistas-tab" data-bs-toggle="tab" data-bs-target="#trompetistas" type="button" role="tab" aria-controls="trompetistas" aria-selected="false">Trompetistas</button>
+                            </li>
+                        </ul>
+                        
+                        <div class="tab-content" id="referenciasTabsContent">
+                            <!-- Pestaña de Cantantes -->
+                            <div class="tab-pane fade show active" id="cantantes" role="tabpanel" aria-labelledby="cantantes-tab">
+                                <div class="row">
+                                    <!-- Cantante 1 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-info text-white">
+                                                <h5 class="mb-0">Freddie Mercury</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">Vocalista de Queen, conocido por su extraordinario rango vocal y presencia escénica.</p>
+                                                <h6>Características vocales:</h6>
+                                                <ul>
+                                                    <li>Rango vocal de cuatro octavas</li>
+                                                    <li>Control excepcional del vibrato</li>
+                                                    <li>Capacidad para alternar entre registros</li>
+                                                    <li>Expresividad dramática</li>
+                                                </ul>
+                                                <h6>Canciones emblemáticas:</h6>
+                                                <p>"Bohemian Rhapsody", "Somebody to Love", "We Are the Champions"</p>
+                                                <button class="btn btn-outline-primary mt-2">
+                                                    <i class="bi bi-info-circle"></i> Ver más detalles
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Cantante 2 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-info text-white">
+                                                <h5 class="mb-0">Aretha Franklin</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">La "Reina del Soul", conocida por su poderosa voz y su influencia en la música soul y R&B.</p>
+                                                <h6>Características vocales:</h6>
+                                                <ul>
+                                                    <li>Potencia vocal extraordinaria</li>
+                                                    <li>Dominio del melisma y la improvisación</li>
+                                                    <li>Expresividad emocional profunda</li>
+                                                    <li>Influencia del gospel en su estilo</li>
+                                                </ul>
+                                                <h6>Canciones emblemáticas:</h6>
+                                                <p>"Respect", "Natural Woman", "Think"</p>
+                                                <button class="btn btn-outline-primary mt-2">
+                                                    <i class="bi bi-info-circle"></i> Ver más detalles
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pestaña de Trompetistas -->
+                            <div class="tab-pane fade" id="trompetistas" role="tabpanel" aria-labelledby="trompetistas-tab">
+                                <div class="row">
+                                    <!-- Trompetista 1 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-warning text-dark">
+                                                <h5 class="mb-0">Marcus Belgrave (1936-2015)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">Pieza clave en la escena del jazz en Detroit, en las décadas de los 50, 60 y 70.</p>
+                                                <h6>Características:</h6>
+                                                <ul>
+                                                    <li>Estudió con Clifford Brown en los 50</li>
+                                                    <li>Tocó R&B con Ray Charles durante varios años</li>
+                                                    <li>Participó en las sesiones de Motown en los años 60</li>
+                                                    <li>Trompetista versátil que podía tocar jazz, R&B y pop</li>
+                                                    <li>Profesor muy respetado</li>
+                                                </ul>
+                                                <button class="btn btn-outline-primary mt-2">
+                                                    <i class="bi bi-info-circle"></i> Ver más detalles
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Trompetista 2 -->
+                                    <div class="col-md-6 mb-4">
+                                        <div class="card h-100">
+                                            <div class="card-header bg-warning text-dark">
+                                                <h5 class="mb-0">Erik Truffaz (nacido en 1960)</h5>
+                                            </div>
+                                            <div class="card-body">
+                                                <p class="card-text">Trompetista francés nacido en Suiza, conocido por su estilo minimalista y uso de efectos electrónicos.</p>
+                                                <h6>Características:</h6>
+                                                <ul>
+                                                    <li>Espacio y estética minimalista del "menos es más"</li>
+                                                    <li>Heredó la estética de Miles Davis en los años 70</li>
+                                                    <li>Uso creativo de efectos de sonido electrónicos</li>
+                                                    <li>Incorpora elementos de hip hop, drum'n'bass y música africana</li>
+                                                </ul>
+                                                <button class="btn btn-outline-primary mt-2">
+                                                    <i class="bi bi-info-circle"></i> Ver más detalles
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <nav aria-label="Paginación de referencias">
+                            <ul class="pagination justify-content-center mt-4">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Siguiente</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

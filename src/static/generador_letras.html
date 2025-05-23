@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Letras - Estudio Musical Virtual</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <style>
+        .prompt-card {
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+        }
+        .prompt-card:hover {
+            background-color: #f8f9fa;
+            transform: translateY(-2px);
+        }
+        .prompt-card.active {
+            border-left: 3px solid #0d6efd;
+            background-color: #f0f7ff;
+        }
+        .prompt-preview {
+            max-height: 80px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .prompt-actions {
+            opacity: 0.2;
+            transition: opacity 0.2s ease;
+        }
+        .prompt-card:hover .prompt-actions {
+            opacity: 1;
+        }
+        .letra-formato {
+            white-space: pre-wrap;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        #promptLibrary {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1050;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-music-note-beamed"></i> Estudio Musical Virtual
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/letras"><i class="bi bi-pencil"></i> Letras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/efectos"><i class="bi bi-soundwave"></i> Efectos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estilos2"><i class="bi bi-music-note"></i> Estilos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tecnicas-vocales"><i class="bi bi-mic"></i> Técnicas Vocales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/estructuras"><i class="bi bi-diagram-3"></i> Estructuras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/referencias"><i class="bi bi-book"></i> Referencias</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/proyectos"><i class="bi bi-folder"></i> Proyectos</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="/generador-letras" class="btn btn-primary me-2 active">
+                        <i class="bi bi-magic"></i> Generar Letra
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h3><i class="bi bi-magic"></i> Generador de Letras con IA</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="card mb-4">
+                                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                        <h5 class="mb-0">Configuración</h5>
+                                        <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#promptLibraryModal">
+                                            <i class="bi bi-collection"></i> Biblioteca de Prompts
+                                        </button>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="generadorForm">
+                                            <div class="mb-3">
+                                                <label for="estilo" class="form-label">Estilo Musical</label>
+                                                <select class="form-select" id="estilo" required>
+                                                    <option value="" selected disabled>Selecciona un estilo</option>
+                                                    <option value="Pop">Pop</option>
+                                                    <option value="Rock">Rock</option>
+                                                    <option value="Hip-Hop">Hip-Hop/Rap</option>
+                                                    <option value="R&B">R&B</option>
+                                                    <option value="Country">Country</option>
+                                                    <option value="Electrónica">Electrónica</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="tema" class="form-label">Tema de la Canción</label>
+                                                <input type="text" class="form-control" id="tema" placeholder="Ej: Amor en primavera" required>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="estructura" class="form-label">Estructura</label>
+                                                <select class="form-select" id="estructura" required>
+                                                    <option value="" selected disabled>Selecciona una estructura</option>
+                                                    <option value="Verso-Coro-Verso-Coro-Puente-Coro">Verso-Coro-Verso-Coro-Puente-Coro</option>
+                                                    <option value="Intro-Verso-Coro-Verso-Coro-Rap-Outro">Intro-Verso-Coro-Verso-Coro-Rap-Outro</option>
+                                                    <option value="Verso-PreCoro-Coro-Verso-PreCoro-Coro-Puente-Coro">Verso-PreCoro-Coro-Verso-PreCoro-Coro-Puente-Coro</option>
+                                                    <option value="AABA">AABA (Jazz)</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <label for="idioma" class="form-label">Idioma</label>
+                                                <select class="form-select" id="idioma" required>
+                                                    <option value="Inglés" selected>Inglés (con traducción al español)</option>
+                                                    <option value="Español">Español (con traducción al inglés)</option>
+                                                </select>
+                                            </div>
+                                            
+                                            <div class="mb-3">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <label for="prompt" class="form-label mb-0">Prompt Personalizado</label>
+                                                    <div>
+                                                        <button type="button" id="savePromptBtn" class="btn btn-sm btn-outline-success">
+                                                            <i class="bi bi-save"></i> Guardar Prompt
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <textarea class="form-control" id="prompt" rows="10">Soy un compositor de musica con Ia que utilizo suno y udio etc y quiero componer letras de canciones inspiradoras y emotivas que cautiven al público. 
+
+Para ello, actua como si fueras el mejor letrista del mundo recopilando las mejores melodias de todos los tiempos y mezclando tambien con los mejores autores de literatura y poesia de todos los tiemops.  Y genera la letra de una cancion  de Amor en una estacion cuando te enamoras de alguien a primera vista. No debe ser la letra demasiado tontita o pegajosaa no se si me entinedes si no me preguntas. 
+
+Detalle:
+Introduce metaforas inteligente y originales al estilo de las letras de las canciones de Joaquin Sabina, Quique Gonzalez. Y de los mejores letristas y arreglistas del mundo. Analiza sus canciones y metaforas para ello y deben ser inteligentes y originales pero que no sea todo metáforas. La cancion debe ser muy corta, con frases cortas que no sean muy largas y adaptarse muy bien al compas de 4/4  para que las frases encajen bien en la musica  y con un chorus que sea pegadizo. Por otro lado manten la estructura de la cancion de Richyesia Song  que a partir de ahora siempre mantendra esta estructura de Insturmental Intro verso y coro, intrumental brake, la parte de rap y instrumental end. Todo lo que no sea la letra de la cancion a cantar debe ir entre corchetes no entre parentesis ni nada.  
+Idioma: Ingles
+
+VOCES: Introduce 3 voces una de hombre otra de mujer y otra voz de hombre para la parte RAP. Ponles un nombre a cada uno como Jonh, Mary, Patrik</textarea>
+                                            </div>
+                                            
+                                            <div class="d-grid">
+                                                <button type="button" id="generarBtn" class="btn btn-primary">
+                                                    <i class="bi bi-stars"></i> Generar Letra
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-7">
+                                <div class="card">
+                                    <div class="card-header bg-light">
+                                        <h5 class="mb-0">Resultado</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="resultadoContainer">
+                                            <div class="text-center py-5">
+                                                <i class="bi bi-music-note-beamed fs-1 text-muted"></i>
+                                                <p class="mt-3 text-muted">Configura los parámetros y haz clic en "Generar Letra" para crear una nueva canción.</p>
+                                            </div>
+                                        </div>
+                                        
+                                        <div id="letraGenerada" class="d-none">
+                                            <ul class="nav nav-tabs" id="idiomaTab" role="tablist">
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link active" id="ingles-tab" data-bs-toggle="tab" data-bs-target="#ingles" type="button" role="tab" aria-controls="ingles" aria-selected="true">Inglés</button>
+                                                </li>
+                                                <li class="nav-item" role="presentation">
+                                                    <button class="nav-link" id="espanol-tab" data-bs-toggle="tab" data-bs-target="#espanol" type="button" role="tab" aria-controls="espanol" aria-selected="false">Español</button>
+                                                </li>
+                                            </ul>
+                                            
+                                            <div class="tab-content mt-3" id="idiomaTabContent">
+                                                <div class="tab-pane fade show active" id="ingles" role="tabpanel" aria-labelledby="ingles-tab">
+                                                    <h4 id="tituloCancion" class="text-center mb-4"></h4>
+                                                    <pre id="contenidoLetra" class="letra-formato"></pre>
+                                                </div>
+                                                <div class="tab-pane fade" id="espanol" role="tabpanel" aria-labelledby="espanol-tab">
+                                                    <h4 id="tituloCancionEs" class="text-center mb-4"></h4>
+                                                    <pre id="contenidoLetraEs" class="letra-formato"></pre>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="d-flex justify-content-between mt-4">
+                                                <div>
+                                                    <button id="copiarBtn" class="btn btn-outline-primary me-2">
+                                                        <i class="bi bi-clipboard"></i> Copiar Inglés
+                                                    </button>
+                                                    <button id="copiarBtnEs" class="btn btn-outline-primary">
+                                                        <i class="bi bi-clipboard"></i> Copiar Español
+                                                    </button>
+                                                </div>
+                                                <button id="guardarBtn" class="btn btn-success">
+                                                    <i class="bi bi-save"></i> Guardar Ambas
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Biblioteca de Prompts -->
+    <div class="modal fade" id="promptLibraryModal" tabindex="-1" aria-labelledby="promptLibraryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="promptLibraryModalLabel">
+                        <i class="bi bi-collection"></i> Biblioteca de Prompts
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="searchPrompt" placeholder="Buscar prompts...">
+                                <button class="btn btn-outline-secondary" type="button" id="searchPromptBtn">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <button type="button" class="btn btn-success" id="createNewPromptBtn">
+                                <i class="bi bi-plus-circle"></i> Nuevo Prompt
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="promptLibrary" class="mb-4">
+                        <!-- Los prompts guardados se cargarán aquí dinámicamente -->
+                        <div class="text-center py-4 text-muted" id="noPromptsMessage">
+                            <i class="bi bi-journal-text fs-1"></i>
+                            <p class="mt-2">No hay prompts guardados. Crea uno nuevo o guarda el actual.</p>
+                        </div>
+                    </div>
+
+                    <div id="promptEditorSection" class="d-none">
+                        <hr>
+                        <h5 class="mb-3">
+                            <i class="bi bi-pencil-square"></i> Editor de Prompt
+                            <button type="button" class="btn btn-sm btn-outline-secondary float-end" id="cancelEditBtn">
+                                <i class="bi bi-x-circle"></i> Cancelar
+                            </button>
+                        </h5>
+                        <div class="mb-3">
+                            <label for="promptName" class="form-label">Nombre del Prompt</label>
+                            <input type="text" class="form-control" id="promptName" placeholder="Ej: Estilo Poético">
+                        </div>
+                        <div class="mb-3">
+                            <label for="promptDescription" class="form-label">Descripción (opcional)</label>
+                            <input type="text" class="form-control" id="promptDescription" placeholder="Ej: Prompt para letras con estilo poético y metáforas">
+                        </div>
+                        <div class="mb-3">
+                            <label for="promptContent" class="form-label">Contenido del Prompt</label>
+                            <textarea class="form-control" id="promptContent" rows="8"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="promptTags" class="form-label">Etiquetas (separadas por comas)</label>
+                            <input type="text" class="form-control" id="promptTags" placeholder="Ej: poético, metáforas, emotivo">
+                        </div>
+                        <input type="hidden" id="promptId" value="">
+                        <div class="text-end">
+                            <button type="button" class="btn btn-primary" id="saveEditPromptBtn">
+                                <i class="bi bi-save"></i> Guardar Cambios
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="useSelectedPromptBtn">Usar Seleccionado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Guardar Prompt Actual -->
+    <div class="modal fade" id="saveCurrentPromptModal" tabindex="-1" aria-labelledby="saveCurrentPromptModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="saveCurrentPromptModalLabel">
+                        <i class="bi bi-save"></i> Guardar Prompt Actual
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="currentPromptName" class="form-label">Nombre del Prompt</label>
+                        <input type="text" class="form-control" id="currentPromptName" placeholder="Ej: Mi prompt personalizado">
+                    </div>
+                    <div class="mb-3">
+                        <label for="currentPromptDescription" class="form-label">Descripción (opcional)</label>
+                        <input type="text" class="form-control" id="currentPromptDescription" placeholder="Ej: Prompt para letras con estilo narrativo">
+                    </div>
+                    <div class="mb-3">
+                        <label for="currentPromptTags" class="form-label">Etiquetas (separadas por comas)</label>
+                        <input type="text" class="form-control" id="currentPromptTags" placeholder="Ej: narrativo, emotivo, detallado">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="confirmSavePromptBtn">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast para notificaciones -->
+    <div class="toast-container">
+        <div class="toast" id="notificationToast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <i class="bi bi-info-circle me-2"></i>
+                <strong class="me-auto" id="toastTitle">Notificación</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" id="toastMessage">
+                Mensaje de notificación
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white mt-5 py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Estudio Musical Virtual</h5>
+                    <p>Tu plataforma completa para la producción musical.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p>&copy; 2025 Estudio Musical Virtual</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elementos del DOM
+            const generarBtn = document.getElementById('generarBtn');
+            const resultadoContainer = document.getElementById('resultadoContainer');
+            const letraGenerada = document.getElementById('letraGenerada');
+            const tituloCancion = document.getElementById('tituloCancion');
+            const contenidoLetra = document.getElementById('contenidoLetra');
+            const tituloCancionEs = document.getElementById('tituloCancionEs');
+            const contenidoLetraEs = document.getElementById('contenidoLetraEs');
+            const copiarBtn = document.getElementById('copiarBtn');
+            const copiarBtnEs = document.getElementById('copiarBtnEs');
+            const guardarBtn = document.getElementById('guardarBtn');
+            const promptTextarea = document.getElementById('prompt');
+            const savePromptBtn = document.getElementById('savePromptBtn');
+            const promptLibrary = document.getElementById('promptLibrary');
+            const noPromptsMessage = document.getElementById('noPromptsMessage');
+            const createNewPromptBtn = document.getElementById('createNewPromptBtn');
+            const promptEditorSection = document.getElementById('promptEditorSection');
+            const cancelEditBtn = document.getElementById('cancelEditBtn');
+            const saveEditPromptBtn = document.getElementById('saveEditPromptBtn');
+            const useSelectedPromptBtn = document.getElementById('useSelectedPromptBtn');
+            const searchPromptBtn = document.getElementById('searchPromptBtn');
+            const searchPromptInput = document.getElementById('searchPrompt');
+            const confirmSavePromptBtn = document.getElementById('confirmSavePromptBtn');
+            
+            // Toasts para notificaciones
+            const notificationToast = document.getElementById('notificationToast');
+            const toastTitle = document.getElementById('toastTitle');
+            const toastMessage = document.getElementById('toastMessage');
+            const toast = new bootstrap.Toast(notificationToast, { delay: 3000 });
+            
+            // Modales
+            const promptLibraryModal = new bootstrap.Modal(document.getElementById('promptLibraryModal'));
+            const saveCurrentPromptModal = new bootstrap.Modal(document.getElementById('saveCurrentPromptModal'));
+            
+            // Variables globales
+            let prompts = loadPrompts();
+            let selectedPromptId = null;
+            
+            // Inicialización
+            renderPromptLibrary();
+            
+            // Función para mostrar notificaciones
+            function showNotification(title, message, type = 'success') {
+                toastTitle.textContent = title;
+                toastMessage.textContent = message;
+                
+                // Eliminar clases de color anteriores
+                notificationToast.classList.remove('bg-success', 'bg-danger', 'bg-warning', 'bg-info', 'text-white');
+                
+                // Añadir clase según el tipo
+                if (type === 'success') {
+                    notificationToast.classList.add('bg-success', 'text-white');
+                } else if (type === 'error') {
+                    notificationToast.classList.add('bg-danger', 'text-white');
+                } else if (type === 'warning') {
+                    notificationToast.classList.add('bg-warning');
+                } else if (type === 'info') {
+                    notificationToast.classList.add('bg-info', 'text-white');
+                }
+                
+                toast.show();
+            }
+            
+            // Cargar prompts desde localStorage
+            function loadPrompts() {
+                const savedPrompts = localStorage.getItem('promptLibrary');
+                return savedPrompts ? JSON.parse(savedPrompts) : [];
+            }
+            
+            // Guardar prompts en localStorage
+            function savePrompts(promptsArray) {
+                localStorage.setItem('promptLibrary', JSON.stringify(promptsArray));
+                prompts = promptsArray;
+            }
+            
+            // Renderizar la biblioteca de prompts
+            function renderPromptLibrary(filterText = '') {
+                // Limpiar el contenedor
+                while (promptLibrary.firstChild) {
+                    promptLibrary.removeChild(promptLibrary.firstChild);
+                }
+                
+                // Filtrar prompts si es necesario
+                const filteredPrompts = filterText 
+                    ? prompts.filter(p => 
+                        p.name.toLowerCase().includes(filterText.toLowerCase()) || 
+                        p.description.toLowerCase().includes(filterText.toLowerCase()) ||
+                        p.tags.some(tag => tag.toLowerCase().includes(filterText.toLowerCase()))
+                    ) 
+                    : prompts;
+                
+                // Mostrar mensaje si no hay prompts
+                if (filteredPrompts.length === 0) {
+                    promptLibrary.appendChild(noPromptsMessage.cloneNode(true));
+                    return;
+                }
+                
+                // Crear y añadir tarjetas de prompts
+                filteredPrompts.forEach(prompt => {
+                    const card = document.createElement('div');
+                    card.className = `card mb-2 prompt-card ${selectedPromptId === prompt.id ? 'active' : ''}`;
+                    card.dataset.id = prompt.id;
+                    
+                    const cardBody = document.createElement('div');
+                    cardBody.className = 'card-body';
+                    
+                    const cardContent = `
+                        <div class="d-flex justify-content-between align-items-start">
+                            <div>
+                                <h5 class="card-title">${prompt.name}</h5>
+                                <p class="card-text text-muted small">${prompt.description || 'Sin descripción'}</p>
+                            </div>
+                            <div class="prompt-actions">
+                                <button class="btn btn-sm btn-outline-primary edit-prompt-btn" data-id="${prompt.id}">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger delete-prompt-btn" data-id="${prompt.id}">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="prompt-preview text-muted small mt-2">${prompt.content.substring(0, 100)}...</div>
+                        <div class="mt-2">
+                            ${prompt.tags.map(tag => `<span class="badge bg-light text-dark me-1">${tag}</span>`).join('')}
+                        </div>
+                    `;
+                    
+                    cardBody.innerHTML = cardContent;
+                    card.appendChild(cardBody);
+                    
+                    // Evento para seleccionar prompt
+                    card.addEventListener('click', function(e) {
+                        // Ignorar si se hizo clic en los botones de editar o eliminar
+                        if (e.target.closest('.edit-prompt-btn') || e.target.closest('.delete-prompt-btn')) {
+                            return;
+                        }
+                        
+                        // Quitar clase active de todas las tarjetas
+                        document.querySelectorAll('.prompt-card').forEach(c => c.classList.remove('active'));
+                        
+                        // Añadir clase active a la tarjeta seleccionada
+                        card.classList.add('active');
+                        
+                        // Actualizar ID seleccionado
+                        selectedPromptId = prompt.id;
+                    });
+                    
+                    promptLibrary.appendChild(card);
+                });
+                
+                // Añadir eventos a los botones de editar y eliminar
+                document.querySelectorAll('.edit-prompt-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const promptId = this.dataset.id;
+                        editPrompt(promptId);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-prompt-btn').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const promptId = this.dataset.id;
+                        deletePrompt(promptId);
+                    });
+                });
+            }
+            
+            // Editar un prompt
+            function editPrompt(promptId) {
+                const prompt = prompts.find(p => p.id === promptId);
+                if (!prompt) return;
+                
+                // Llenar el formulario de edición
+                document.getElementById('promptId').value = prompt.id;
+                document.getElementById('promptName').value = prompt.name;
+                document.getElementById('promptDescription').value = prompt.description || '';
+                document.getElementById('promptContent').value = prompt.content;
+                document.getElementById('promptTags').value = prompt.tags.join(', ');
+                
+                // Mostrar sección de edición
+                promptEditorSection.classList.remove('d-none');
+                
+                // Hacer scroll al editor
+                promptEditorSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Eliminar un prompt
+            function deletePrompt(promptId) {
+                if (confirm('¿Estás seguro de que deseas eliminar este prompt? Esta acción no se puede deshacer.')) {
+                    const updatedPrompts = prompts.filter(p => p.id !== promptId);
+                    savePrompts(updatedPrompts);
+                    
+                    // Si el prompt eliminado era el seleccionado, resetear selección
+                    if (selectedPromptId === promptId) {
+                        selectedPromptId = null;
+                    }
+                    
+                    renderPromptLibrary();
+                    showNotification('Prompt eliminado', 'El prompt ha sido eliminado correctamente.');
+                }
+            }
+            
+            // Generar ID único
+            function generateId() {
+                return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
+            }
+            
+            // Eventos
+            
+            // Guardar prompt actual
+            savePromptBtn.addEventListener('click', function() {
+                const currentPrompt = promptTextarea.value.trim();
+                if (!currentPrompt) {
+                    showNotification('Error', 'El prompt no puede estar vacío.', 'error');
+                    return;
+                }
+                
+                // Limpiar campos del modal
+                document.getElementById('currentPromptName').value = '';
+                document.getElementById('currentPromptDescription').value = '';
+                document.getElementById('currentPromptTags').value = '';
+                
+                // Mostrar modal
+                saveCurrentPromptModal.show();
+            });
+            
+            // Confirmar guardar prompt actual
+            confirmSavePromptBtn.addEventListener('click', function() {
+                const name = document.getElementById('currentPromptName').value.trim();
+                const description = document.getElementById('currentPromptDescription').value.trim();
+                const tagsString = document.getElementById('currentPromptTags').value.trim();
+                const content = promptTextarea.value.trim();
+                
+                if (!name) {
+                    showNotification('Error', 'Debes proporcionar un nombre para el prompt.', 'error');
+                    return;
+                }
+                
+                if (!content) {
+                    showNotification('Error', 'El contenido del prompt no puede estar vacío.', 'error');
+                    return;
+                }
+                
+                // Crear nuevo prompt
+                const newPrompt = {
+                    id: generateId(),
+                    name,
+                    description,
+                    content,
+                    tags: tagsString ? tagsString.split(',').map(tag => tag.trim()) : [],
+                    createdAt: new Date().toISOString(),
+                    updatedAt: new Date().toISOString()
+                };
+                
+                // Añadir a la biblioteca
+                const updatedPrompts = [...prompts, newPrompt];
+                savePrompts(updatedPrompts);
+                
+                // Cerrar modal
+                saveCurrentPromptModal.hide();
+                
+                showNotification('Prompt guardado', 'El prompt ha sido guardado correctamente en tu biblioteca.');
+            });
+            
+            // Crear nuevo prompt
+            createNewPromptBtn.addEventListener('click', function() {
+                // Limpiar formulario
+                document.getElementById('promptId').value = '';
+                document.getElementById('promptName').value = '';
+                document.getElementById('promptDescription').value = '';
+                document.getElementById('promptContent').value = '';
+                document.getElementById('promptTags').value = '';
+                
+                // Mostrar sección de edición
+                promptEditorSection.classList.remove('d-none');
+                
+                // Hacer scroll al editor
+                promptEditorSection.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Cancelar edición
+            cancelEditBtn.addEventListener('click', function() {
+                promptEditorSection.classList.add('d-none');
+            });
+            
+            // Guardar cambios de edición
+            saveEditPromptBtn.addEventListener('click', function() {
+                const promptId = document.getElementById('promptId').value;
+                const name = document.getElementById('promptName').value.trim();
+                const description = document.getElementById('promptDescription').value.trim();
+                const content = document.getElementById('promptContent').value.trim();
+                const tagsString = document.getElementById('promptTags').value.trim();
+                
+                if (!name) {
+                    showNotification('Error', 'Debes proporcionar un nombre para el prompt.', 'error');
+                    return;
+                }
+                
+                if (!content) {
+                    showNotification('Error', 'El contenido del prompt no puede estar vacío.', 'error');
+                    return;
+                }
+                
+                // Si hay ID, actualizar prompt existente
+                if (promptId) {
+                    const updatedPrompts = prompts.map(p => {
+                        if (p.id === promptId) {
+                            return {
+                                ...p,
+                                name,
+                                description,
+                                content,
+                                tags: tagsString ? tagsString.split(',').map(tag => tag.trim()) : [],
+                                updatedAt: new Date().toISOString()
+                            };
+                        }
+                        return p;
+                    });
+                    
+                    savePrompts(updatedPrompts);
+                    showNotification('Prompt actualizado', 'Los cambios han sido guardados correctamente.');
+                } else {
+                    // Crear nuevo prompt
+                    const newPrompt = {
+                        id: generateId(),
+                        name,
+                        description,
+                        content,
+                        tags: tagsString ? tagsString.split(',').map(tag => tag.trim()) : [],
+                        createdAt: new Date().toISOString(),
+                        updatedAt: new Date().toISOString()
+                    };
+                    
+                    const updatedPrompts = [...prompts, newPrompt];
+                    savePrompts(updatedPrompts);
+                    showNotification('Prompt creado', 'El nuevo prompt ha sido creado correctamente.');
+                }
+                
+                // Ocultar sección de edición
+                promptEditorSection.classList.add('d-none');
+                
+                // Actualizar biblioteca
+                renderPromptLibrary();
+            });
+            
+            // Usar prompt seleccionado
+            useSelectedPromptBtn.addEventListener('click', function() {
+                if (!selectedPromptId) {
+                    showNotification('Error', 'Debes seleccionar un prompt primero.', 'error');
+                    return;
+                }
+                
+                const selectedPrompt = prompts.find(p => p.id === selectedPromptId);
+                if (selectedPrompt) {
+                    promptTextarea.value = selectedPrompt.content;
+                    promptLibraryModal.hide();
+                    showNotification('Prompt cargado', `El prompt "${selectedPrompt.name}" ha sido cargado correctamente.`);
+                }
+            });
+            
+            // Buscar prompts
+            searchPromptBtn.addEventListener('click', function() {
+                const searchText = searchPromptInput.value.trim();
+                renderPromptLibrary(searchText);
+            });
+            
+            // Buscar al presionar Enter
+            searchPromptInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    searchPromptBtn.click();
+                }
+            });
+            
+            // Generar letra (simulado para demostración)
+            generarBtn.addEventListener('click', function() {
+                // Mostrar indicador de carga
+                resultadoContainer.innerHTML = `
+                    <div class="text-center py-5">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Cargando...</span>
+                        </div>
+                        <p class="mt-3">Generando letra... Esto puede tomar unos momentos.</p>
+                    </div>
+                `;
+                
+                // Simular tiempo de generación
+                setTimeout(() => {
+                    // Ocultar contenedor de resultado y mostrar letra generada
+                    resultadoContainer.classList.add('d-none');
+                    letraGenerada.classList.remove('d-none');
+                    
+                    // Ejemplo de letra generada (simulado)
+                    tituloCancion.textContent = "First Glance";
+                    contenidoLetra.textContent = `[Instrumental Intro]
+
+[Verse 1: John]
+City lights reflect in puddles on the street
+Like stars that fell to guide my wandering feet
+Your silhouette against the autumn rain
+A painting framed in time I can't explain
+
+[Chorus: Mary]
+In that moment when our eyes first met
+Something changed that I won't soon forget
+Like seasons turning in a single day
+You walked in and swept my breath away
+
+[Instrumental Break]
+
+[Verse 2: John]
+Coffee shop windows steamed with whispered dreams
+Your laughter cuts through noise like golden beams
+The universe conspired for this chance
+To rewrite my story with a single glance
+
+[Chorus: Mary]
+In that moment when our eyes first met
+Something changed that I won't soon forget
+Like seasons turning in a single day
+You walked in and swept my breath away
+
+[Rap: Patrick]
+Clock stopped, world froze, everything aligned
+Your presence hit me like the perfect rhyme
+No coincidence, no accident of fate
+Just perfect timing I can't recreate
+Now every memory before seems gray
+'Cause colors came alive that fateful day
+
+[Chorus: Mary & John]
+In that moment when our eyes first met
+Something changed that I won't soon forget
+Like seasons turning in a single day
+You walked in and swept my breath away
+
+[Instrumental End]`;
+
+                    tituloCancionEs.textContent = "Primera Mirada";
+                    contenidoLetraEs.textContent = `[Introducción Instrumental]
+
+[Verso 1: John]
+Las luces de la ciudad se reflejan en los charcos de la calle
+Como estrellas que cayeron para guiar mis pies errantes
+Tu silueta contra la lluvia de otoño
+Un cuadro enmarcado en el tiempo que no puedo explicar
+
+[Coro: Mary]
+En ese momento cuando nuestros ojos se encontraron
+Algo cambió que no olvidaré pronto
+Como estaciones cambiando en un solo día
+Entraste y me dejaste sin aliento
+
+[Pausa Instrumental]
+
+[Verso 2: John]
+Ventanas de la cafetería empañadas con sueños susurrados
+Tu risa corta el ruido como rayos dorados
+El universo conspiró para esta oportunidad
+De reescribir mi historia con una sola mirada
+
+[Coro: Mary]
+En ese momento cuando nuestros ojos se encontraron
+Algo cambió que no olvidaré pronto
+Como estaciones cambiando en un solo día
+Entraste y me dejaste sin aliento
+
+[Rap: Patrick]
+El reloj se detuvo, el mundo se congeló, todo se alineó
+Tu presencia me golpeó como la rima perfecta
+No fue coincidencia, no fue un accidente del destino
+Solo un momento perfecto que no puedo recrear
+Ahora cada recuerdo anterior parece gris
+Porque los colores cobraron vida ese día fatídico
+
+[Coro: Mary & John]
+En ese momento cuando nuestros ojos se encontraron
+Algo cambió que no olvidaré pronto
+Como estaciones cambiando en un solo día
+Entraste y me dejaste sin aliento
+
+[Final Instrumental]`;
+                }, 2000);
+            });
+            
+            // Copiar letra en inglés
+            copiarBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(contenidoLetra.textContent)
+                    .then(() => {
+                        showNotification('Copiado', 'Letra en inglés copiada al portapapeles.');
+                    })
+                    .catch(err => {
+                        showNotification('Error', 'No se pudo copiar la letra.', 'error');
+                    });
+            });
+            
+            // Copiar letra en español
+            copiarBtnEs.addEventListener('click', function() {
+                navigator.clipboard.writeText(contenidoLetraEs.textContent)
+                    .then(() => {
+                        showNotification('Copiado', 'Letra en español copiada al portapapeles.');
+                    })
+                    .catch(err => {
+                        showNotification('Error', 'No se pudo copiar la letra.', 'error');
+                    });
+            });
+            
+            // Guardar letras (simulado)
+            guardarBtn.addEventListener('click', function() {
+                showNotification('Guardado', 'Las letras han sido guardadas correctamente.');
+            });
+        });
+    </script>
+</body>
+</html>

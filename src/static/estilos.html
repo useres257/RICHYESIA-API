@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estilos Musicales - Estudio Musical Virtual</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Estilos específicos para la página de estilos musicales */
+        .page-header {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .page-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-header h1 i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .page-header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .estilos-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .estilo-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #fff;
+            transition: transform 0.3s ease;
+            margin-bottom: 20px;
+        }
+        
+        .estilo-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .estilo-header {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+        
+        .estilo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.7));
+        }
+        
+        .estilo-header h3 {
+            color: #fff;
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            font-size: 1.5rem;
+        }
+        
+        .estilo-body {
+            padding: 20px;
+        }
+        
+        .estilo-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .tag {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        
+        .tag.rock { background-color: #e74c3c; color: white; }
+        .tag.pop { background-color: #3498db; color: white; }
+        .tag.hip-hop { background-color: #f39c12; color: white; }
+        .tag.electronica { background-color: #2ecc71; color: white; }
+        .tag.latina { background-color: #9b59b6; color: white; }
+        .tag.rnb { background-color: #7f8c8d; color: white; }
+        .tag.jazz { background-color: #34495e; color: white; }
+        .tag.folk { background-color: #795548; color: white; }
+        
+        .artistas-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 10px 0;
+        }
+        
+        .artista-tag {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            background-color: #f5f5f5;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .comandos-container {
+            margin: 15px 0;
+        }
+        
+        .comando-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        
+        .btn-anadir-comando {
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .btn-anadir-comando:hover {
+            color: #2980b9;
+        }
+        
+        code {
+            font-family: monospace;
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            flex-grow: 1;
+        }
+        
+        .botones-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn-ver-detalles {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-ver-detalles:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .btn-anadir-comandos {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .btn-anadir-comandos:hover {
+            background-color: #45a049;
+        }
+        
+        /* Estilos para la paginación */
+        .paginacion {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .paginacion a {
+            color: #333;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 4px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .paginacion a:hover:not(.active) {
+            background-color: #f1f1f1;
+        }
+        
+        .paginacion a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+        }
+        
+        .paginacion a.disabled {
+            color: #ccc;
+            pointer-events: none;
+        }
+        
+        /* Estilos para el panel lateral de comandos seleccionados */
+        .panel-lateral {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        
+        .panel-header {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .panel-header i {
+            margin-right: 10px;
+        }
+        
+        .panel-body {
+            padding: 15px;
+        }
+        
+        .comandos-seleccionados {
+            position: sticky;
+            top: 20px;
+        }
+        
+        .lista-comandos {
+            margin: 15px 0;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            font-family: monospace;
+        }
+        
+        .btn-copiar {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-copiar i {
+            margin-right: 8px;
+        }
+        
+        .btn-copiar:hover {
+            background-color: #45a049;
+        }
+        
+        .btn-guardar {
+            background-color: #9c27b0;
+            color: white;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-guardar i {
+            margin-right: 8px;
+        }
+        
+        .btn-guardar:hover {
+            background-color: #7B1FA2;
+        }
+        
+        /* Estilos para las notificaciones */
+        .notificacion {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        
+        .notificacion.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notificacion.success {
+            background-color: #4CAF50;
+        }
+        
+        .notificacion.error {
+            background-color: #f44336;
+        }
+        
+        /* Estilos para etiquetas populares */
+        .etiquetas-populares {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .etiquetas-populares h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .etiquetas-populares .tag {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        
+        /* Estilos para el filtro lateral */
+        .filtros-sidebar {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        
+        .filtros-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .filtros-header i {
+            margin-right: 10px;
+        }
+        
+        .filtros-body {
+            padding: 15px;
+        }
+        
+        .filtro-grupo {
+            margin-bottom: 15px;
+        }
+        
+        .filtro-grupo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .search-container {
+            display: flex;
+            margin-bottom: 10px;
+        }
+        
+        .search-container input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+        
+        .search-container button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        .filtro-grupo input[type="checkbox"] {
+            margin-right: 8px;
+        }
+        
+        .btn-filtrar {
+            background-color: #3498db;
+            color: white;
+            width: 100%;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-filtrar i {
+            margin-right: 8px;
+        }
+        
+        .btn-filtrar:hover {
+            background-color: #2980b9;
+        }
+        
+        .btn-restablecer {
+            background-color: #f0f0f0;
+            color: #333;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-restablecer i {
+            margin-right: 8px;
+        }
+        
+        .btn-restablecer:hover {
+            background-color: #e0e0e0;
+        }
+        
+        /* Diseño responsivo */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .estilos-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .comandos-seleccionados {
+                position: static;
+            }
+        }
+        
+        /* Correcciones específicas para la maquetación */
+        .sidebar {
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .content {
+            width: 100%;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Estilos para asegurar que las tarjetas tengan altura uniforme */
+        .estilo-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .estilo-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .botones-container {
+            margin-top: auto;
+        }
+        
+        /* Estilo para el encabezado principal */
+        .main-header {
+            background-color: #6a1b9a;
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .main-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .main-header h1 i {
+            margin-right: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .main-header p {
+            margin: 10px 0 0;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/">
+                <i class="fas fa-music"></i>
+                <span>Estudio Musical Virtual</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/letras">Letras</a></li>
+                <li><a href="/efectos">Efectos</a></li>
+                <li><a href="/estilos" class="active">Estilos</a></li>
+                <li><a href="/tecnicas-vocales">Técnicas Vocales</a></li>
+                <li><a href="/estructuras">Estructuras</a></li>
+                <li><a href="/estructura-cancion">Estructura Canción</a></li>
+                <li><a href="/referencias">Referencias</a></li>
+                <li><a href="/proyectos">Proyectos</a></li>
+                <li><a href="/generador-letras" class="btn-highlight">Generar Letra</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="main-header">
+            <h1><i class="fas fa-music"></i> Enciclopedia de Estilos Musicales</h1>
+            <p>Explora diferentes géneros y estilos musicales, sus características y comandos específicos para usar en tus producciones.</p>
+        </div>
+        
+        <div class="grid-container">
+            <!-- Sidebar de filtros -->
+            <div class="sidebar">
+                <div class="filtros-sidebar">
+                    <div class="filtros-header">
+                        <i class="fas fa-filter"></i> Filtros
+                    </div>
+                    
+                    <div class="filtros-body">
+                        <div class="filtro-grupo">
+                            <label for="buscar-estilo">Buscar estilos</label>
+                            <div class="search-container">
+                                <input type="text" id="buscar-estilo" placeholder="Ej: Pop, Rock...">
+                                <button type="button" id="btn-buscar"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="filtro-grupo">
+                            <label>Categorías</label>
+                            <div>
+                                <input type="checkbox" id="cat-pop" value="Pop">
+                                <label for="cat-pop">Pop</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-rock" value="Rock">
+                                <label for="cat-rock">Rock</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-hiphop" value="Hip-Hop/Rap">
+                                <label for="cat-hiphop">Hip-Hop/Rap</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-rnb" value="R&B">
+                                <label for="cat-rnb">R&B</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-electronica" value="Electrónica">
+                                <label for="cat-electronica">Electrónica</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-latina" value="Latina">
+                                <label for="cat-latina">Latina</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-jazz" value="Jazz">
+                                <label for="cat-jazz">Jazz</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="cat-folk" value="Folk/Acústica">
+                                <label for="cat-folk">Folk/Acústica</label>
+                            </div>
+                        </div>
+                        
+                        <div class="filtro-grupo">
+                            <label>Época</label>
+                            <div>
+                                <input type="checkbox" id="epoca-60s70s" value="60s-70s">
+                                <label for="epoca-60s70s">60s-70s</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="epoca-80s90s" value="80s-90s">
+                                <label for="epoca-80s90s">80s-90s</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="epoca-2000s2010s" value="2000s-2010s">
+                                <label for="epoca-2000s2010s">2000s-2010s</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="epoca-actual" value="Actual (2020s)">
+                                <label for="epoca-actual">Actual (2020s)</label>
+                            </div>
+                        </div>
+                        
+                        <button type="button" class="btn btn-filtrar" id="aplicar-filtros">
+                            <i class="fas fa-filter"></i> Aplicar filtros
+                        </button>
+                        <button type="button" class="btn btn-restablecer" id="restablecer-filtros">
+                            <i class="fas fa-undo"></i> Restablecer
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="panel-lateral comandos-seleccionados">
+                    <div class="panel-header">
+                        <i class="fas fa-clipboard-list"></i> Comandos seleccionados
+                    </div>
+                    <div class="panel-body">
+                        <div class="lista-comandos" id="lista-comandos">
+                            <p>Selecciona comandos de estilo para verlos aquí</p>
+                        </div>
+                        <button type="button" class="btn btn-copiar" id="copiar-comandos">
+                            <i class="fas fa-copy"></i> Copiar comandos
+                        </button>
+                        <button type="button" class="btn btn-guardar" id="guardar-preset">
+                            <i class="fas fa-save"></i> Guardar como preset
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contenido principal -->
+            <div class="content">
+                <div class="etiquetas-populares">
+                    <h3>Etiquetas populares</h3>
+                    <div>
+                        <span class="tag" data-filter="todos">Todos</span>
+                        <span class="tag pop" data-filter="Pop">Pop</span>
+                        <span class="tag rock" data-filter="Rock">Rock</span>
+                        <span class="tag hip-hop" data-filter="Hip-Hop">Hip-Hop</span>
+                        <span class="tag rnb" data-filter="R&B">R&B</span>
+                        <span class="tag electronica" data-filter="Electrónica">Electrónica</span>
+                        <span class="tag latina" data-filter="Latina">Latina</span>
+                        <span class="tag jazz" data-filter="Jazz">Jazz</span>
+                        <span class="tag folk" data-filter="Folk">Folk</span>
+                    </div>
+                </div>
+                
+                <!-- Contenedor de estilos musicales (se llenará con JavaScript) -->
+                <div class="estilos-container" id="estilos-container">
+                    <!-- El contenido se generará dinámicamente con JavaScript -->
+                </div>
+                
+                <!-- Paginación -->
+                <div class="paginacion">
+                    <a href="#" id="paginacion-anterior" class="disabled">Anterior</a>
+                    <a href="#" class="paginacion-numero active" data-page="0">1</a>
+                    <a href="#" class="paginacion-numero" data-page="1">2</a>
+                    <a href="#" class="paginacion-numero" data-page="2">3</a>
+                    <a href="#" id="paginacion-siguiente">Siguiente</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Estudio Musical Virtual</p>
+            <p>Tu plataforma completa para la producción musical.</p>
+        </div>
+    </footer>
+
+    <div class="notificacion" id="notificacion"></div>
+
+    <!-- Script para la paginación y funcionalidad de estilos musicales -->
+    <script src="js/estilos_paginacion.js"></script>
+</body>
+</html>
