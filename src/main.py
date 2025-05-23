@@ -1,8 +1,9 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import sys
 # DON'T CHANGE THIS !!!
 sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-
 from flask import Flask, send_from_directory, render_template
 from src.models.user import db
 from src.routes.user import user_bp
