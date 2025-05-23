@@ -2,37 +2,441 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Estudio Musical - Inicio</title>
+  <title>Generador de Letras con IA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <style>
+    body { background: linear-gradient(120deg, #f0e8ff 0%, #eaf6fb 100%); min-height: 100vh; }
+    .main-card { border-radius: 22px; box-shadow: 0 8px 40px 0 #b9b9e633; background: #fff; padding: 2rem 2.5rem; }
+    .navbar { background: linear-gradient(90deg,#7b2ff2 0%,#f357a8 100%) !important; box-shadow: 0 2px 20px #b9b9e633; }
+    .navbar-brand { font-size: 1.55rem; letter-spacing: 1px; }
+    .btn-gradient { background: linear-gradient(90deg,#7b2ff2 0%,#f357a8 100%); color: #fff; border: none; font-weight: bold; transition: background 0.3s; }
+    .btn-gradient:hover { background: linear-gradient(90deg,#f357a8 0%,#7b2ff2 100%); color: #fff; }
+    .form-label { font-weight: 500; color: #7b2ff2; }
+    .form-control:focus, .form-select:focus { border-color: #7b2ff2; box-shadow: 0 0 0 .2rem #e6d6ff4d; }
+    .resultado-letra { background: #f8f9fb; border-radius: 16px; padding: 1.3rem 1.6rem; font-size: 1.08em; white-space: pre-wrap; min-height: 280px; border: 1px solid #ede7fa; box-shadow: 0 2px 6px #e1d6f0a8; }
+    .nav-tabs .nav-link.active { background: #f6f7fb; font-weight: bold; color: #7b2ff2 !important; }
+    .nav-tabs .nav-link { color: #7b2ff2 !important; border: none; border-radius: 0; }
+    @media (max-width: 900px) { .main-card { padding: 1.2rem 0.4rem; } }
+    @media (max-width: 700px) { .main-card { padding: .2rem 0; } .nav-tabs { font-size: .95em; } }
+    .sortable-section { display: inline-block; margin: 0 5px 7px 0; cursor: move; padding: 2px 9px 2px 7px; background: #e3dbff; border-radius: 16px; font-weight: 500; color: #4b3c80; border: 1px solid #c7b8ec; user-select: none; min-width: 60px; text-align: center; }
+    .sortable-section.selected { background: #7b2ff2; color: #fff; border-color: #7b2ff2; }
+    .sortable-section:hover { background: #f357a8; color: #fff; border-color: #f357a8; }
+    .song-title { font-size: 1.35em; font-weight: bold; margin-bottom: .5em; color: #7b2ff2; }
+    .song-chords { font-size: 1em; font-weight: normal; color: #b14bb6; }
+    .alert-warning { font-size: 1em; }
+  </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="#">Estudio Musical</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+  <nav class="navbar navbar-expand-lg navbar-dark py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="#">🎵 Estudio Musical Virtual</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link active" href="index.html">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="generador-letras.html">Generar Letra</a>
-          </li>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Letras</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Efectos</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Estilos</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Técnicas Vocales</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Estructuras</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Referencias</a></li>
+          <li class="nav-item"><a class="nav-link fw-semibold" href="#">Proyectos</a></li>
         </ul>
+        <a class="btn btn-gradient ms-lg-3 my-2 my-lg-0 px-3" href="#">🎤 Generar Letra</a>
       </div>
     </div>
   </nav>
-  <header class="container text-center my-5">
-    <h1 class="display-4">Bienvenido a Estudio Musical</h1>
-    <p class="lead">Tu espacio para crear letras de canciones con inteligencia artificial.</p>
-    <a href="generador-letras.html" class="btn btn-primary btn-lg"><i class="bi bi-stars"></i> Generar Letra</a>
-  </header>
-  <footer class="bg-dark text-white text-center py-3">
-    &copy; 2025 Estudio Musical
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+  <div class="container my-5">
+    <div class="row g-4 main-card mx-auto shadow">
+      <!-- Formulario Configuración -->
+      <div class="col-lg-5 mb-4 mb-lg-0">
+        <h4 class="mb-3" style="color:#7b2ff2;">⚡ Generador de Letras con IA</h4>
+        <form id="form-letras">
+          <div class="mb-3">
+            <label class="form-label" for="idioma-principal">Idioma principal de la canción</label>
+            <select class="form-select" id="idioma-principal">
+              <option value="es">Español</option>
+              <option value="en">Inglés</option>
+            </select>
+            <div class="form-text">Elige el idioma en el que quieres que la canción sea natural y rime.</div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="estilo">Estilo Musical</label>
+            <select class="form-select" id="estilo">
+              <option value="">Selecciona un estilo</option>
+              <option>Pop</option>
+              <option>Rock</option>
+              <option>Reggaetón</option>
+              <option>Rap</option>
+              <option>Balada</option>
+              <option>Urbano</option>
+              <option>Otro</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="tema">Tema de la Canción</label>
+            <input type="text" class="form-control" id="tema" placeholder="Ej: Amor a primera vista">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Estructura de la canción (elige las partes y reordena):</label>
+            <div id="estructura-secciones" class="mb-2"></div>
+            <div class="form-text">
+              Haz clic para seleccionar/deseleccionar secciones.<br>
+              Arrastra para reordenar. Se usarán las seleccionadas y en ese orden.<br>
+              (Incluye secciones como [Chicago Rap], [Instrumental intro], [Instrumental Brake])
+            </div>
+            <input type="hidden" id="estructura-cancion">
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="acorde-inicial">Acorde inicial de la canción:</label>
+            <select id="acorde-inicial" class="form-select"></select>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Progresión sugerida:</label>
+            <div id="progresion-sugerida" class="alert alert-info py-2"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="acordes">Secuencia de acordes (puedes editar o copiar de la sugerencia):</label>
+            <input type="text" class="form-control" id="acordes" placeholder="Ej: Dm, G, C, F">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Prompt fijo (automático):</label>
+            <div class="alert alert-secondary" id="prompt-fijo" style="font-size:0.98em; white-space:pre-line;"></div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label" for="prompt">Detalles extra / Prompt Personalizado (opcional):</label>
+            <textarea class="form-control" id="prompt" rows="5" placeholder="Escribe aquí detalles extra, tono, número de voces..."></textarea>
+          </div>
+          <div id="botones-prompt"></div>
+          <button type="submit" class="btn btn-gradient w-100 mt-1 py-2 shadow-sm fs-5">🎤 Generar Letra</button>
+        </form>
+      </div>
+      <!-- Resultado -->
+      <div class="col-lg-7">
+        <h4 class="mb-3" style="color:#7b2ff2;">🎶 Resultado</h4>
+        <!-- Pestañas para inglés/español -->
+        <ul class="nav nav-tabs mb-2" id="tab-idiomas" style="display:none;">
+          <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#tab-idioma1" id="tab-idioma1-btn">Idioma 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#tab-idioma2" id="tab-idioma2-btn">Idioma 2</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="tab-idiomas-content" style="display:none;">
+          <div class="tab-pane fade show active resultado-letra" id="tab-idioma1"></div>
+          <div class="tab-pane fade resultado-letra" id="tab-idioma2"></div>
+        </div>
+        <div id="aviso-formato" style="display:none;" class="alert alert-warning mt-2"></div>
+        <pre id="resultado-letra" class="resultado-letra"></pre>
+      </div>
+    </div>
+  </div>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+<script>
+// Delimitador ultra seguro: %%Título%%
+const DELIM = "%%";
+// --- Estructura de la canción ---
+const SECCIONES = [
+  "[Intro]", "[Instrumental intro]", "[Verse]", "[Chorus]", "[Verse Rap]", "[Hook]", "[Break]", "[Instrumental Brake]", "[Chicago Rap]",
+  "[Bridge]", "[Drop]", "[Interlude]", "[Freestyle]", "[Outro]", "[Pre-Chorus]", "[Beat Switch]", "[Refrain]", "[Coda]"
+];
+const estructuraDiv = document.getElementById('estructura-secciones');
+const estructuraInput = document.getElementById('estructura-cancion');
+function crearEstructuraPildoras() {
+  estructuraDiv.innerHTML = "";
+  SECCIONES.forEach((sec, i) => {
+    const span = document.createElement('span');
+    span.className = 'sortable-section selected';
+    span.textContent = sec;
+    span.tabIndex = 0;
+    span.dataset.index = i;
+    span.onclick = function() {
+      span.classList.toggle('selected');
+      actualizaEstructuraSeleccionada();
+    };
+    estructuraDiv.appendChild(span);
+  });
+  actualizaEstructuraSeleccionada();
+}
+crearEstructuraPildoras();
+Sortable.create(estructuraDiv, {
+  animation: 150,
+  onEnd: actualizaEstructuraSeleccionada,
+  ghostClass: 'bg-warning'
+});
+function actualizaEstructuraSeleccionada() {
+  const seleccionadas = [];
+  estructuraDiv.querySelectorAll('.sortable-section.selected').forEach(span => {
+    seleccionadas.push(span.textContent);
+  });
+  estructuraInput.value = seleccionadas.join(', ');
+  updatePromptFijo();
+}
+function seleccionarPorDefecto() {
+  estructuraDiv.querySelectorAll('.sortable-section').forEach((span, i) => {
+    if (i < 12) span.classList.add('selected');
+    else span.classList.remove('selected');
+  });
+  actualizaEstructuraSeleccionada();
+}
+seleccionarPorDefecto();
+
+// --- Selector y progresión de acordes ---
+const ALL_CHORDS = [
+  "C", "Cm", "C7", "C#m", "C#m7", "C#7", "Db", "Dbm", "Db7",
+  "D", "Dm", "D7", "D#m", "D#m7", "D#7", "Eb", "Ebm", "Eb7",
+  "E", "Em", "E7", "F", "Fm", "F7", "F#m", "F#m7", "F#7", "Gb", "Gbm", "Gb7",
+  "G", "Gm", "G7", "G#m", "G#m7", "G#7", "Ab", "Abm", "Ab7",
+  "A", "Am", "A7", "A#m", "A#m7", "A#7", "Bb", "Bbm", "Bb7",
+  "B", "Bm", "B7"
+];
+const progresiones = {
+  "C":   ["F", "G", "Am", "Dm", "Em", "G7", "C7"],
+  "Cm":  ["Fm", "G7", "Ab", "Bb", "Eb"],
+  "C#m": ["F#m", "G#", "A", "E", "B", "G#m"],
+  "D":   ["G", "A", "Bm", "Em", "F#m", "A7", "D7"],
+  "Dm":  ["Gm", "A7", "C", "F", "Bb"],
+  "D#m": ["G#m", "A#", "B", "F#", "C#", "A#m"],
+  "E":   ["A", "B", "C#m", "F#m", "G#m", "A7", "E7"],
+  "Em":  ["Am", "B7", "C", "G", "D", "F#dim"],
+  "F":   ["Bb", "C", "Dm", "Gm", "A7", "F7"],
+  "Fm":  ["Bbm", "C7", "Ab", "Bb", "Eb"],
+  "F#m": ["Bm", "C#", "D", "A", "E", "C#m"],
+  "G":   ["C", "D", "Em", "Am", "Bm", "D7", "G7"],
+  "Gm":  ["Cm", "D7", "Eb", "Bb", "F"],
+  "G#m": ["C#m", "D#", "E", "B", "F#", "D#m"],
+  "A":   ["D", "E", "F#m", "Bm", "C#m", "E7", "A7"],
+  "Am":  ["Dm", "E7", "C", "G", "F"],
+  "A#m": ["D#m", "F", "G#", "C#", "A#", "Fm"],
+  "B":   ["E", "F#", "G#m", "C#m", "D#m", "F#7", "B7"],
+  "Bm":  ["Em", "F#7", "G", "D", "A", "E"],
+};
+const acordeInicial = document.getElementById('acorde-inicial');
+ALL_CHORDS.forEach(c => {
+  acordeInicial.innerHTML += `<option value="${c}">${c}</option>`;
+});
+const progresionDiv = document.getElementById('progresion-sugerida');
+const acordesInput = document.getElementById('acordes');
+acordeInicial.addEventListener('change', function() {
+  const acorde = this.value;
+  let sugerida = progresiones[acorde] ? progresiones[acorde].join(', ') : "Elige un acorde para ver sugerencias";
+  progresionDiv.innerText = sugerida;
+  if(!acordesInput.value || acordesInput.value === acorde) {
+    acordesInput.value = acorde + (sugerida !== "Elige un acorde para ver sugerencias" ? ', ' + sugerida : '');
+  }
+  updatePromptFijo();
+});
+acordesInput.addEventListener('input', updatePromptFijo);
+
+// --- Prompt fijo profesional (delimitador ultra seguro: %%Título%%) ---
+function getPromptFijo(estilo, tema, estructura, acordes, idiomaPrincipal) {
+  const idioma1 = idiomaPrincipal === "en" ? "Inglés" : "Español";
+  const idioma2 = idiomaPrincipal === "en" ? "Español" : "Inglés";
+  const label1 = idioma1;
+  const label2 = idioma2;
+  return `
+1. Escribe DOS versiones de la canción:
+   - Primero, la versión en ${idioma1}.
+   - Segundo, la versión en ${idioma2}.
+2. Elige un título creativo y original para cada versión, que resuma e integre el mensaje o historia de la canción. El título NO debe ser simplemente el tema literal ni solo una palabra del tema, sino un resumen atractivo que refleje el contenido de la letra.
+3. Cada versión debe comenzar con el título de la canción entre dos símbolos de porcentaje obligatoriamente (ejemplo: %%Título de la canción%%) y, justo al lado, los acordes principales entre corchetes simples y separados por comas (ejemplo: [${acordes||"C, Am, F, G"}]).
+   - Todo lo que esté entre los símbolos %% es el título de la canción.
+   - No uses corchetes, negrita, comillas ni ningún otro símbolo para el título, SOLO los símbolos %%.
+4. Después de esa línea, escribe la letra de la canción siguiendo la estructura: ${estructura||"[estructura]"}, sobre el tema "${tema||"[tema]"}", usando las etiquetas [Intro], [Verse], [Chorus], etc. para cada sección.
+5. Separa ambas versiones claramente usando los títulos '${label1}:' y '${label2}:' antes de cada versión.
+6. No incluyas el título en ningún otro formato ni en otro lugar, solo como se indica.
+7. Si no usas exactamente este formato para el título y los acordes, la canción no será válida.
+`;
+}
+function updatePromptFijo() {
+  const estilo = document.getElementById('estilo').value;
+  const tema = document.getElementById('tema').value;
+  const estructura = document.getElementById('estructura-cancion').value;
+  const acordes = document.getElementById('acordes').value;
+  const idiomaPrincipal = document.getElementById('idioma-principal').value;
+  document.getElementById('prompt-fijo').innerText = getPromptFijo(estilo, tema, estructura, acordes, idiomaPrincipal);
+}
+['estilo','tema','acordes','idioma-principal'].forEach(id => {
+  document.getElementById(id).addEventListener('input', updatePromptFijo);
+});
+updatePromptFijo();
+
+// Prompt extra: guardar/restablecer
+let promptEditadoManualmente = false;
+const promptBox = document.getElementById('prompt');
+const botonesPrompt = document.getElementById('botones-prompt');
+const btnGuardarPrompt = document.createElement('button');
+btnGuardarPrompt.type = 'button';
+btnGuardarPrompt.className = 'btn btn-outline-secondary btn-sm mt-1 mb-1 w-100';
+btnGuardarPrompt.innerText = '💾 Guardar Prompt Extra';
+btnGuardarPrompt.onclick = function() {
+  localStorage.setItem('promptPersonalizado', promptBox.value);
+  btnGuardarPrompt.innerText = '✅ Prompt Guardado';
+  setTimeout(() => btnGuardarPrompt.innerText = '💾 Guardar Prompt Extra', 1500);
+};
+const btnRestablecerPrompt = document.createElement('button');
+btnRestablecerPrompt.type = 'button';
+btnRestablecerPrompt.className = 'btn btn-outline-primary btn-sm mb-2 w-100';
+btnRestablecerPrompt.innerText = '🔄 Restablecer Prompt Extra';
+btnRestablecerPrompt.onclick = function() {
+  promptBox.value = '';
+  promptEditadoManualmente = false;
+  localStorage.removeItem('promptPersonalizado');
+};
+botonesPrompt.appendChild(btnGuardarPrompt);
+botonesPrompt.appendChild(btnRestablecerPrompt);
+window.addEventListener('DOMContentLoaded', function() {
+  const promptGuardado = localStorage.getItem('promptPersonalizado');
+  if (promptGuardado) {
+    promptBox.value = promptGuardado;
+    promptEditadoManualmente = true;
+  }
+});
+promptBox.addEventListener('input', function() {
+  promptEditadoManualmente = true;
+});
+
+// --- Función para extraer título y acordes con delimitador seguro (%%Título%%) ---
+function extraeTituloYLetra(bloque) {
+  const regex = /^\s*%%([^%]+)%%\s*\[([^\]]+)\]/;
+  const lines = bloque ? bloque.split('\n').map(l => l.trim()).filter(Boolean) : [];
+  let titulo = "", acordes = "";
+  if (lines.length) {
+    const m = lines[0].match(regex);
+    if (m) {
+      titulo = m[1];
+      acordes = m[2];
+      lines.shift();
+    }
+  }
+  return {
+    titulo: titulo,
+    acordes: acordes,
+    letra: lines.join('\n').trim()
+  };
+}
+
+// --- Mostrar letra en pestañas (robusto y con aviso si no hay formato correcto) ---
+function mostrarLetraEnPestanas(texto, idiomaPrincipal) {
+  const labels = {
+    en: ["Inglés", "English"],
+    es: ["Español", "Spanish"]
+  };
+  const idioma1 = idiomaPrincipal;
+  const idioma2 = idiomaPrincipal === "es" ? "en" : "es";
+  const label1s = labels[idioma1];
+  const label2s = labels[idioma2];
+  function buscaBloque(labelArr, texto) {
+    for (let label of labelArr) {
+      const reg = new RegExp(label + "\\s*:?\\s*([\\s\\S]*?)(?=(" + labels.en.concat(labels.es).join("|") + ")\\s*:|$)", "i");
+      const m = texto.match(reg);
+      if (m && m[1].trim()) return m[1].trim();
+    }
+    return "";
+  }
+  const letra1 = buscaBloque(label1s, texto);
+  const letra2 = buscaBloque(label2s, texto);
+
+  const tabs = document.getElementById('tab-idiomas');
+  const tabsContent = document.getElementById('tab-idiomas-content');
+  const tab1 = document.getElementById('tab-idioma1');
+  const tab2 = document.getElementById('tab-idioma2');
+  const tab1btn = document.getElementById('tab-idioma1-btn');
+  const tab2btn = document.getElementById('tab-idioma2-btn');
+  const preResultado = document.getElementById('resultado-letra');
+  const avisoFormato = document.getElementById('aviso-formato');
+
+  tab1btn.textContent = label1s[0];
+  tab2btn.textContent = label2s[0];
+
+  // Extrae títulos y acordes
+  const t1 = extraeTituloYLetra(letra1);
+  const t2 = extraeTituloYLetra(letra2);
+
+  function htmlConTitulo(t) {
+    if (!t) return "";
+    let html = "";
+    if (t.titulo) {
+      html += `<div class="song-title"><b>${t.titulo}</b>${t.acordes ? ` <span class="song-chords">[${t.acordes}]</span>` : ""}</div>`;
+    }
+    html += t.letra ? `<div>${t.letra}</div>` : "";
+    return html;
+  }
+
+  // Mostrar ambas pestañas si al menos una tiene título y letra
+  if ((t1.titulo || t2.titulo) && (letra1 || letra2)) {
+    tab1.innerHTML = htmlConTitulo(t1) || "(No se encontró la letra en " + label1s[0] + ")";
+    tab2.innerHTML = htmlConTitulo(t2) || "(No se encontró la letra en " + label2s[0] + ")";
+    tabs.style.display = '';
+    tabsContent.style.display = '';
+    preResultado.style.display = 'none';
+    avisoFormato.style.display = 'none';
+  } else {
+    preResultado.textContent = texto;
+    tabs.style.display = 'none';
+    tabsContent.style.display = 'none';
+    preResultado.style.display = '';
+    avisoFormato.innerHTML = `⚠️ La letra generada no cumple el formato solicitado.<br>Por favor, pulsa <b>Generar Letra</b> de nuevo o ajusta el prompt.<br>Recuerda: Cada versión debe comenzar con <b>%%Título%% [acordes]</b>`;
+    avisoFormato.style.display = '';
+  }
+}
+
+// Manejar el envío del formulario
+document.getElementById('form-letras').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  document.getElementById('resultado-letra').innerText = "Generando letra...";
+  document.getElementById('tab-idiomas').style.display = 'none';
+  document.getElementById('tab-idiomas-content').style.display = 'none';
+  document.getElementById('resultado-letra').style.display = '';
+  document.getElementById('aviso-formato').style.display = 'none';
+  const estilo = document.getElementById('estilo').value || "[estilo]";
+  const tema = document.getElementById('tema').value || "[tema]";
+  const estructura = document.getElementById('estructura-cancion').value || "[estructura]";
+  const acordes = document.getElementById('acordes').value || "C, Am, F, G";
+  const idiomaPrincipal = document.getElementById('idioma-principal').value;
+  const promptFijo = getPromptFijo(estilo, tema, estructura, acordes, idiomaPrincipal);
+  const detallesExtra = promptBox.value.trim();
+  const promptFinal = detallesExtra
+    ? `${promptFijo}\n\nDetalles extra:\n${detallesExtra}`
+    : promptFijo;
+
+  // Pega aquí tu API Key de OpenRouter
+  const apiKey = "AQUI_TU_API_KEY";
+
+  try {
+    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': 'Bearer ' + apiKey,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-3.5-turbo",
+        messages: [
+          {role: "system", content: "Eres un letrista profesional, experto en componer canciones creativas."},
+          {role: "user", content: promptFinal}
+        ]
+      })
+    });
+
+    const data = await response.json();
+    let texto = "";
+    if(data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content){
+      texto = data.choices[0].message.content;
+    } else {
+      document.getElementById('resultado-letra').innerText = "No se pudo generar la letra. Intenta de nuevo o revisa tu API Key.";
+      return;
+    }
+    mostrarLetraEnPestanas(texto.trim(), idiomaPrincipal);
+  } catch (error) {
+    document.getElementById('resultado-letra').innerText = "Error al conectar con OpenRouter: " + error;
+  }
+});
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
